@@ -1,5 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">MajorTourGuideApp</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_welcome_menu">WelcomeMenu</string>
+    <string name="title_activity_fork">Fork</string>
+    <string name="title_activity_find">Find</string>
+    <string name="title_activity_faculty">Faculty</string>
+    <string name="title_activity_courses">Courses</string>
 
 </resources>
