@@ -24,6 +24,7 @@
         <activity
             android:name="com.example.majortourguideapp.Fork"
             android:label="@string/title_activity_fork" >
+            
         </activity>
         <activity
             android:name="com.example.majortourguideapp.Find"

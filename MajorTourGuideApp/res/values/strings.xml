@@ -9,5 +9,6 @@
     <string name="title_activity_find">Find</string>
     <string name="title_activity_faculty">Faculty</string>
     <string name="title_activity_courses">Courses</string>
+    <string name="Major">You haven\'t chosen a major yet...</string>
 
 </resources>
