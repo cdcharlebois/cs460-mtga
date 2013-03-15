@@ -16,15 +16,11 @@
         <activity
             android:name="com.example.majortourguideapp.WelcomeMenu"
             android:label="@string/title_activity_welcome_menu" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            
         </activity>
         <activity
             android:name="com.example.majortourguideapp.Fork"
             android:label="@string/title_activity_fork" >
-            
         </activity>
         <activity
             android:name="com.example.majortourguideapp.Find"
@@ -37,6 +33,15 @@
         <activity
             android:name="com.example.majortourguideapp.Courses"
             android:label="@string/title_activity_courses" >
+        </activity>
+        <activity
+            android:name="com.example.majortourguideapp.DBTest"
+            android:label="@string/title_activity_dbtest" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

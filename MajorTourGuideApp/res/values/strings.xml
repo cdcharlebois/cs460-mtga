@@ -10,5 +10,7 @@
     <string name="title_activity_faculty">Faculty</string>
     <string name="title_activity_courses">Courses</string>
     <string name="Major">You haven\'t chosen a major yet...</string>
+    <string name="title_activity_dbtest">DBTest</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
