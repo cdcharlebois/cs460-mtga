@@ -20,7 +20,7 @@ public class WelcomeMenu extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_welcome_menu, menu);
-		/*next();*/
+		next();
 		return true;
 	}
 	
@@ -41,7 +41,7 @@ public class WelcomeMenu extends Activity {
 
        	// ========== vvv ==========
        	// this line sends the major selected to the next activity
-       	i.putExtra("major", 3/* major */);	//change to whatever major they select.
+       	i.putExtra("major", 1/* major */);	//change to whatever major they select.
         // ========== ^^^ ==========
        	
        	startActivity(i);
