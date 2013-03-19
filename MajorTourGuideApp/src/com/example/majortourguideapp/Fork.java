@@ -1,33 +1,54 @@
 /*
+ * ===   Fork.java   ===
  * This Activity is launched from the Main App Screen, and presents the user with 3
  * buttons, each of which launches a new activity.
+ * Author: Conner Charlebois
+ * Date: 3/12/2013
  */
 package com.example.majortourguideapp;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.database.Cursor;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Fork extends Activity implements OnClickListener {
 	
 	//Declare Instance Variables
 	private Button btnFind, btnFaculty, btnCore;
+	private TextView lblMajor;
+	private int major;	//stores the major_id from the previous screen
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_fork);
+
+		//inflate layout
 		btnFind = (Button) findViewById(R.id.btnFind);
 		btnFaculty = (Button) findViewById(R.id.btnFaculty);
 		btnCore = (Button) findViewById(R.id.btnCore);
+		lblMajor = (TextView) findViewById(R.id.lblMajor);
 		
+		//set listeners
 		btnFind.setOnClickListener(this);
 		btnFaculty.setOnClickListener(this);
 		btnCore.setOnClickListener(this);
+		
+		//get major passed from WelcomeMenu
+		major = getIntent().getExtras().getInt("major");
+		Log.i("cdc", "major = "+major);
+		DB_Helper db = new DB_Helper(this);
+		Cursor c = db.selectFromXwhereY(DB_Contract.Major.TABLE_NAME, DB_Contract.Major.COLUMN_MAJOR_ID+" = "+major);
+		c.moveToFirst();
+		String selected_major = c.getString(c.getColumnIndexOrThrow(DB_Contract.Major.COLUMN_NAME));
+		lblMajor.setText("You've selected "+selected_major);
 	}
 
 	@Override

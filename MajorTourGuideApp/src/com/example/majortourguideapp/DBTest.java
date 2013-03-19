@@ -1,5 +1,8 @@
 /*
+ * @author: Conner Charlebois
+ * created: 3/18/2013
  * THIS CLASS IS FOR TESTING PURPOSES ONLY
+ * Use this as a reference for querying the DB.
  */
 
 package com.example.majortourguideapp;
@@ -24,17 +27,25 @@ public class DBTest extends Activity {
 		TEST ENVIRONMENT
 		---------- */
 		myDB = new DB_Helper(this); //create the helper, DB
-//		populateTables();
+		/*db = myDB.getReadableDatabase();	
 		
+		runTestMajorQry();			//test major table
+		runTestDestQry();			//test destination 	
+		runTestProfQry();			//test professor
+		runTestEntranceQry();		//test entrance
 		
-		db = myDB.getReadableDatabase();		
-		runTestMajorQry();
-		runTestDestQry();
-		runTestProfQry();
-		runTestEntranceQry();
+		db.close();*/
 		
-		
-		
+		/* ====================
+		 * 	USE THIS METHOD TO GET DATA
+		 	==================== */ 
+		Cursor c = myDB.selectFromXwhereY(DB_Contract.Professor.TABLE_NAME, DB_Contract.Professor.COLUMN_EMAIL +" = 'jpepe@bentley.edu'");
+		c.moveToFirst();
+		do{ //for each row
+			Log.i("cdc-db", c.getString(c.getColumnIndexOrThrow(DB_Contract.Professor.COLUMN_EMAIL))); //returns MAJOR_ID at the current cursor position
+			Log.i("cdc-db", c.getString(c.getColumnIndexOrThrow(DB_Contract.Professor.COLUMN_NAME)));
+			c.moveToNext();
+		}while(!c.isAfterLast()); //stop after last row
 		
 		
 	}
@@ -95,7 +106,7 @@ public class DBTest extends Activity {
 						sort_order							// sort					
 						);
 				
-				c.moveToFirst();
+				c.moveToFirst();	//setup cursor
 				do{ //for each row
 					Log.d("cdc-db", c.getString(c.getColumnIndexOrThrow(DB_Contract.Destination.COLUMN_ROOM))); //returns MAJOR_ID at the current cursor position
 					Log.d("cdc-db", c.getString(c.getColumnIndexOrThrow(DB_Contract.Destination.COLUMN_NAME)));

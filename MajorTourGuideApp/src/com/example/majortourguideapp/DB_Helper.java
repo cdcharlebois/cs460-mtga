@@ -1,6 +1,15 @@
+/*
+ * DB_Helper.java
+ * This class should be called in order to reference the DB.
+ * [TODO] Add functionality to query here [CC]
+ */
+
+
+
 package com.example.majortourguideapp;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -298,6 +307,10 @@ public class DB_Helper extends SQLiteOpenHelper {
 	
 	
 	@Override
+	/* 
+	 * Function called on DB Creation
+	 * @see android.database.sqlite.SQLiteOpenHelper#onCreate(android.database.sqlite.SQLiteDatabase)
+	 */
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(SQL_CREATE_MAJORS);
 		db.execSQL(SQL_POPULATE_MAJORS);
@@ -326,9 +339,30 @@ public class DB_Helper extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 	
-	/*@Override
-	public void onOpen(SQLiteDatabase db){
-		
-	}*/
-
+	public SQLiteDatabase getDB(){
+		return this.getReadableDatabase();
+	}
+	
+	/**
+	 * 
+	 * @param x: Table name to query => DB_Contract.Major.TABLE_NAME
+	 * @param y: Where clause of SQL query 
+	 * 			 	=> DB_Contract.Major.COLUMN_NAME + " = marketing"
+	 * @return Cursor object with row from DB. 
+	 * 				=> Access with Cursor.getString(Cursor.getColumnIndexOrThrow(
+	 */
+	public Cursor selectFromXwhereY(String x, String y){
+		return getDB().query(
+				x, 
+				null, 
+				y, 
+				null, 
+				null, 
+				null, 
+				null, 
+				null
+			);
+	}
+	
+	
 }
