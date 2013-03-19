@@ -54,10 +54,14 @@ public class Fork extends Activity implements OnClickListener {
 		//get major passed from WelcomeMenu
 		major = getIntent().getExtras().getInt("major");
 		Log.i("cdc", "major = "+major);
+		
+		// query db to get the major name
 		DB_Helper db = new DB_Helper(this);
 		Cursor c = db.selectFromXwhereY(DB_Contract.Major.TABLE_NAME, DB_Contract.Major.COLUMN_MAJOR_ID+" = "+major);
 		c.moveToFirst();
 		String selected_major = c.getString(c.getColumnIndexOrThrow(DB_Contract.Major.COLUMN_NAME));
+		
+		// display the text
 		lblMajor.setText("You've selected "+selected_major);
 		
 		
