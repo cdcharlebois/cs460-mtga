@@ -1,3 +1,7 @@
+/*
+ * Activity to display the courses required for the given major
+ */
+
 package com.example.majortourguideapp;
 
 import android.os.Bundle;
