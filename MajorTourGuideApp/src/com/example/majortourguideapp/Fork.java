@@ -90,7 +90,8 @@ public class Fork extends Activity implements OnClickListener {
 			name="Faculty";
 			break;
 		case R.id.btnCore:
-			//Do some crazy stuff
+			i.setComponent(new ComponentName("com.example.majortourguideapp",
+	       			"com.example.majortourguideapp.Courses"));
 			name="Core";
 			break;
 		}
