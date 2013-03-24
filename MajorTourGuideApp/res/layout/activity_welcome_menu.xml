@@ -6,7 +6,7 @@
     
     <TextView
        android:id="@+id/lblChoice"
-       android:layout_width="wrap_content"
+       android:layout_width="fill_parent"
        android:layout_height="wrap_content"
        android:layout_marginBottom="12dp"
        android:height="60dp"
@@ -28,7 +28,10 @@
            android:height="80dp"
            android:text="CIS"
            android:width="80dip"
-           android:layout_weight="1" />
+           android:layout_weight="1" 
+           android:background="@color/blue"
+           android:textColor="@color/white"
+           android:layout_margin="3dip"/>
        
        <Button
            android:id="@+id/btnAC"
@@ -37,7 +40,10 @@
            android:height="80dp"
            android:text="AC"
            android:width="80dip"
-           android:layout_weight="1" />
+           android:layout_weight="1" 
+           android:background="@color/green"
+           android:textColor="@color/white"
+           android:layout_margin="3dip"/>
        </LinearLayout>
 
     <LinearLayout
@@ -55,7 +61,10 @@
            android:height="80dp"
            android:text="FI"
            android:width="80dip"
-           android:layout_weight="1" />
+           android:layout_weight="1" 
+           android:background="@color/purple"
+           android:textColor="@color/white"
+           android:layout_margin="3dip"/>
        
        <Button
            android:id="@+id/btnMK"
@@ -64,7 +73,10 @@
            android:height="80dp"
            android:text="MK"
            android:width="80dip"
-           android:layout_weight="1" />
+           android:layout_weight="1" 
+           android:background="@color/red"
+           android:textColor="@color/white"
+           android:layout_margin="3dip"/>
    </LinearLayout>
 
 </RelativeLayout>

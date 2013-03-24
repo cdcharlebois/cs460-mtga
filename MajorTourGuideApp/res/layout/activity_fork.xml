@@ -27,7 +27,10 @@
            android:layout_height="wrap_content"
            android:height="48dp"
            android:text="Find..."
-           android:width="200dip" />
+           android:width="200dip" 
+           android:background="@color/orange"
+           android:textColor="@color/white"
+           android:layout_margin="3dip"/>
 
        <Button
            android:id="@+id/btnFaculty"
@@ -35,7 +38,10 @@
            android:layout_height="wrap_content"
            android:height="48dp"
            android:text="Faculty..."
-           android:width="200dip" />
+           android:width="200dip" 
+           android:background="@color/red"
+           android:textColor="@color/white"
+           android:layout_margin="3dip"/>
 
        <Button
            android:id="@+id/btnCore"
@@ -43,7 +49,10 @@
            android:layout_height="wrap_content"
            android:height="48dp"
            android:text="Core..."
-           android:width="200dip" />
+           android:width="200dip" 
+           android:background="@color/orange"
+           android:textColor="@color/white"
+           android:layout_margin="3dip"/>
        
    </LinearLayout>
 

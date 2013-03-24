@@ -41,8 +41,10 @@ public class Fork extends Activity implements OnClickListener {
 
 		//inflate layout
 		btnFind = (Button) findViewById(R.id.btnFind);
+		btnFind.setBackgroundColor(getResources().getColor(R.color.orange));
 		btnFaculty = (Button) findViewById(R.id.btnFaculty);
 		btnCore = (Button) findViewById(R.id.btnCore);
+		btnCore.setBackgroundColor(getResources().getColor(R.color.orange));
 		lblMajor = (TextView) findViewById(R.id.lblMajor);
 		
 		
@@ -81,6 +83,7 @@ public class Fork extends Activity implements OnClickListener {
 		Intent i = new Intent();
 		switch (v.getId()){
 		case R.id.btnFind:
+			btnFind.setBackgroundColor(getResources().getColor(R.color.dOrange));
 			i.setComponent(new ComponentName("com.example.majortourguideapp",
 	       			"com.example.majortourguideapp.Find"));
 			name="Find";
@@ -90,6 +93,7 @@ public class Fork extends Activity implements OnClickListener {
 			name="Faculty";
 			break;
 		case R.id.btnCore:
+			btnCore.setBackgroundColor(getResources().getColor(R.color.dOrange));
 			i.setComponent(new ComponentName("com.example.majortourguideapp",
 	       			"com.example.majortourguideapp.Courses"));
 			name="Core";
@@ -99,7 +103,7 @@ public class Fork extends Activity implements OnClickListener {
        	// this line sends the major selected to the next activity
        	i.putExtra("major", major);	//change to whatever major they select.
         // ========== ^^^ ==========
-       	Toast.makeText(this, "You started this activity: "+name, Toast.LENGTH_LONG).show();
+       	//Toast.makeText(this, "You started this activity: "+name, Toast.LENGTH_LONG).show();
        	startActivity(i);
 		
 		

@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 public class Find extends Activity {
 	private Spinner spinner;
 	int major;
+	private ImageView img;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +23,13 @@ public class Find extends Activity {
 
 		//inflate layout
 		spinner = (Spinner) findViewById(R.id.spinner1);
-
+		img = (ImageView)findViewById(R.id.image);
+        
+		
 		//initialize
 		major = getIntent().getExtras().getInt("major");
+		img.setImageResource(R.drawable.nav);
+		
 		//populate the list of destinations from the major
 		ArrayAdapter<CharSequence> aa = null;
 		switch(major){

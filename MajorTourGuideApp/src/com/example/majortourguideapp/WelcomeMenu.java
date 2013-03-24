@@ -14,7 +14,7 @@ import android.widget.Button;
 public class WelcomeMenu extends Activity implements OnClickListener {
 	
 	//Declare Instance Variables
-	private Button btnCIS, btnFI, btnAC, btnMK;
+	private Button btnCIS, btnFI, btnAC, btnMK; 
 	private int major;
 
 	@Override
@@ -24,9 +24,13 @@ public class WelcomeMenu extends Activity implements OnClickListener {
 		
 		//inflate layout
 		btnCIS = (Button) findViewById(R.id.btnCIS);
+		btnCIS.setBackgroundColor(getResources().getColor(R.color.blue));
 		btnFI = (Button) findViewById(R.id.btnFI);
+		btnFI.setBackgroundColor(getResources().getColor(R.color.purple));
 		btnAC = (Button) findViewById(R.id.btnAC);
+		btnAC.setBackgroundColor(getResources().getColor(R.color.green));
 		btnMK = (Button) findViewById(R.id.btnMK);
+		btnMK.setBackgroundColor(getResources().getColor(R.color.red));
 		
 		//set listeners
 		btnCIS.setOnClickListener(this);
@@ -67,20 +71,24 @@ public class WelcomeMenu extends Activity implements OnClickListener {
 	
 	
 	public void onClick(View v) {
-		String name = "";
-		Intent i = new Intent();
+//		String name = "";
+//		Intent i = new Intent();
 		switch (v.getId()){
 		case R.id.btnCIS:
-			next(major = 1);
+			btnCIS.setBackgroundColor(getResources().getColor(R.color.dBlue));
+			next(1);
 			break;
 		case R.id.btnFI:
-			next(major = 3);
+			btnFI.setBackgroundColor(getResources().getColor(R.color.dPurple));
+			next(3);
 			break;
 		case R.id.btnAC:
-			next(major = 2);
+			btnAC.setBackgroundColor(getResources().getColor(R.color.dGreen));
+			next(2);
 			break;
 		case R.id.btnMK:
-			next(major = 4);
+			btnMK.setBackgroundColor(getResources().getColor(R.color.dRed));
+			next(4);
 			break;
 			}
 	}
