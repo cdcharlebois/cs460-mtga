@@ -62,6 +62,14 @@ public class DB_Helper extends SQLiteOpenHelper {
 			DB_Contract.Entrance.COLUMN_LAT + TEXT_TYPE + COMMA_SEP +
 			DB_Contract.Entrance.COLUMN_LONG + TEXT_TYPE +
 			");";
+	public static final String SQL_CREATE_COURSES = 
+			"CREATE TABLE " + DB_Contract.Course.TABLE_NAME + " ( " +
+			DB_Contract.Course._ID + "INTEGER PRIMARY KEY" + COMMA_SEP +
+			DB_Contract.Course.COLUMN_COURSE_CODE + TEXT_TYPE + COMMA_SEP +
+			DB_Contract.Course.COLUMN_COURSE_DESC + TEXT_TYPE + COMMA_SEP +
+			DB_Contract.Course.COLUMN_MAJOR_LINK + TEXT_TYPE +
+			");";
+			
 			
 	// --------------------
 	//	MAJOR
@@ -298,6 +306,23 @@ public class DB_Helper extends SQLiteOpenHelper {
 	public static final String SQL_DELETE_PROFESSORS = 
 			"DROP TABLE IF EXISTS " + DB_Contract.Professor.TABLE_NAME;
 	
+	/* --------------------
+	  	COURSE
+	 	-------------------- */
+	public static final String SQL_POPULATE_COURSES = 
+			"INSERT INTO " + DB_Contract.Course.TABLE_NAME + " ( "+DB_Contract.Course.COLUMN_COURSE_CODE +", "+ DB_Contract.Course.COLUMN_COURSE_DESC +", "+DB_Contract.Course.COLUMN_MAJOR_LINK+") VALUES "+
+					"('CS 150', 'Introduction Data & Information Management', '1'), "+
+					"('CS 180', 'Programming Fundamentals', '1'), "+
+					"('CS 240', 'Business Process & Communication Infrastructure', '1'), "+
+					"('CS 350', 'Database Management Systems', '1'), "+
+					"('CS 360', 'Business Systems Analysis & Design', '1'), "+
+					"('CS Elective x 3', 'Unrestricted CS Elective', '1') ";
+	public static final String SQL_DELETE_COURSES = 
+			"DROP TABLE IF EXISTS " + DB_Contract.Course.TABLE_NAME;	
+
+	
+	
+	
 	/* ----------
 		Constructor
 	  	---------- */
@@ -320,6 +345,12 @@ public class DB_Helper extends SQLiteOpenHelper {
 		db.execSQL(SQL_POPULATE_PROFESSORS);
 		db.execSQL(SQL_CREATE_ENTRANCES);
 		db.execSQL(SQL_POPULATE_ENTRANCES);
+		//create courses
+		db.execSQL(SQL_CREATE_COURSES);
+		//populate courses
+		db.execSQL(SQL_POPULATE_COURSES);
+		
+		
 	}
 
 	@Override
@@ -329,6 +360,7 @@ public class DB_Helper extends SQLiteOpenHelper {
 		db.execSQL(SQL_DELETE_DESTINATIONS);
 		db.execSQL(SQL_DELETE_PROFESSORS);
 		db.execSQL(SQL_DELETE_ENTRANCES);
+		db.execSQL(SQL_DELETE_COURSES);
 		onCreate(db);
 		
 

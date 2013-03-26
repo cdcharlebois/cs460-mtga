@@ -7,6 +7,8 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.database.Cursor;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -17,6 +19,7 @@ public class Courses extends ListActivity {
 	private ListView list;
 	private  ArrayList<String> courses = new ArrayList<String>();
 	private ArrayAdapter<String> arrayAdapter;
+	private int major;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +27,30 @@ public class Courses extends ListActivity {
 		setContentView(R.layout.activity_courses);
 		getActionBar().setDisplayHomeAsUpEnabled(true);		//android design compliant nav
 		
+		//get major passed from Fork
+		major = getIntent().getExtras().getInt("major");
+		Log.i("cdc", "major = "+major);
+		
+		// query db to get the courses for this major
+		DB_Helper db = new DB_Helper(this);
+		Cursor c = db.selectFromXwhereY(DB_Contract.Course.TABLE_NAME, DB_Contract.Course.COLUMN_MAJOR_LINK+" = "+major);
+		c.moveToFirst();
+		do{ //for each row
+			String course_code = c.getString(c.getColumnIndexOrThrow(DB_Contract.Course.COLUMN_COURSE_CODE));
+			String course_desc = c.getString(c.getColumnIndexOrThrow(DB_Contract.Course.COLUMN_COURSE_DESC));
+			courses.add(course_code + ": " + course_desc);
+			c.moveToNext();
+		}while(!c.isAfterLast()); //stop after last row
+		
+		
+		
 		//here's where we'll pull the live values from the array
-		courses.add("CS 150 Introduction Data & Information Management");
+		/*courses.add("CS 150 Introduction Data & Information Management");
 		courses.add("CS 180 Programming Fundamentals");
 		courses.add("CS 240 Business Process & Communication Infrastructure");
 		courses.add("CS 350 Database Management Systems");
 		courses.add("CS 360 Business Systems Analysis & Design");
-		courses.add("CS Elective x 3");
+		courses.add("CS Elective x 3");*/
 		
 		//the array populates the list
 		arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, courses);

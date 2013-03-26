@@ -96,6 +96,7 @@ public class Fork extends Activity implements OnClickListener {
 			btnCore.setBackgroundColor(getResources().getColor(R.color.dOrange));
 			i.setComponent(new ComponentName("com.example.majortourguideapp",
 	       			"com.example.majortourguideapp.Courses"));
+			i.putExtra("major", major);
 			name="Core";
 			break;
 		}
