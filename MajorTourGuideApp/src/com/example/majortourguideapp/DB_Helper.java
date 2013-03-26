@@ -1,7 +1,9 @@
-/*
+/**
  * DB_Helper.java
+ * @author CHARLEB_CONN
  * This class should be called in order to reference the DB.
- * [TODO] Add functionality to query here [CC]
+ * [DONE] Add functionality to query here [CC]
+ * [3/26/2013] EDIT: Added course table
  */
 
 
@@ -18,7 +20,7 @@ public class DB_Helper extends SQLiteOpenHelper {
 		Variables for helper
 		---------- */
 	public static final String DATABASE_NAME = "mtga.db";
-	public static final int DATABASE_VERSION = 2;	//if you change the schema, you need to update this.
+	public static final int DATABASE_VERSION = 1;	//if you change the schema, you need to update this.
 	
 	/* ----------
 		Variables for SQL
@@ -316,7 +318,25 @@ public class DB_Helper extends SQLiteOpenHelper {
 					"('CS 240', 'Business Process & Communication Infrastructure', '1'), "+
 					"('CS 350', 'Database Management Systems', '1'), "+
 					"('CS 360', 'Business Systems Analysis & Design', '1'), "+
-					"('CS Elective x 3', 'Unrestricted CS Elective', '1') ";
+					"('CS Elective x 3', 'Unrestricted CS Elective', '1'), "+
+					"('AC 310', 'Cost Management', '2'), "+
+					"('AC 311', 'Financial Accounting and Reporting I', '2'), "+
+					"('AC 312', 'Financial Accounting and Reporting II', '2'), "+
+					"('AC 340', 'Accounting Information Systems', '2'), "+
+					"('AC 350', 'Federal Taxation', '2'), "+
+					"('AC 412', 'Advanced Accounting', '2'), "+
+					"('AC 470', 'Financial Statement Auditing ', '2'), "+
+					"('AC 472', 'Internal Auditing', '2'), "+
+					"('AC Elective', 'Restricted AC Elective', '2'), "+
+					"('FI 305', 'Principles of Accounting and Finance', '3'), "+
+					"('FI 320', 'Financial Markets & Investments', '3'), "+
+					"('FI 351', 'International Finance', '3'), "+
+					"('FI 380', 'Advanced Managerial Finance', '3'), "+
+					"('FI Elective x 4', 'Unrestricted FI Elective', '3'), "+
+					"('MK 322', 'Marketing Research', '4'), "+
+					"('MK 400', 'Marketing Management', '4'), "+
+					"('MK Elective x 4', 'Marketing Elective', '4'), "+
+					"('?? Elective x 2', 'Marketing-Related Elective', '4'); ";
 	public static final String SQL_DELETE_COURSES = 
 			"DROP TABLE IF EXISTS " + DB_Contract.Course.TABLE_NAME;	
 

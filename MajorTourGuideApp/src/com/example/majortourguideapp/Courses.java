@@ -1,3 +1,14 @@
+/**
+ * Courses.java
+ * @author CHARLEB_CONN, TRUEB_CURT
+ * Android Activity to display the courses associated with the given major.
+ * [3/26/2013] EDIT: reads the courses from db
+ * [3/26/2013] EDIT: FULL FUNCTIONALITY COMPLETE - CHARLEB_CONN
+ * 
+ * 
+ */
+
+
 package com.example.majortourguideapp;
 
 import java.util.ArrayList;
