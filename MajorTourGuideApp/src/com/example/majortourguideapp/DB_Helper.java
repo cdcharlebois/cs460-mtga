@@ -369,8 +369,6 @@ public class DB_Helper extends SQLiteOpenHelper {
 		db.execSQL(SQL_CREATE_COURSES);
 		//populate courses
 		db.execSQL(SQL_POPULATE_COURSES);
-		
-		
 	}
 
 	@Override

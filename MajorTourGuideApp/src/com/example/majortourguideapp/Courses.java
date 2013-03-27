@@ -88,7 +88,7 @@ public class Courses extends ListActivity {
 	            parentActivityIntent.addFlags(
 	                    Intent.FLAG_ACTIVITY_CLEAR_TOP |
 	                    Intent.FLAG_ACTIVITY_NEW_TASK);
-	            parentActivityIntent.putExtra("major", 1 /*pass back the major */);	//since Fork requires a major, give it back
+	            parentActivityIntent.putExtra("major", major);	//since Fork requires a major, give it back
 	            startActivity(parentActivityIntent);
 	            finish();
 	            return true;

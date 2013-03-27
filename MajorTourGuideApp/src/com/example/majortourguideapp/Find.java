@@ -1,5 +1,6 @@
 package com.example.majortourguideapp;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.ComponentName;
@@ -20,6 +21,12 @@ public class Find extends Activity {
 		super.onCreate(savedInstanceState);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.activity_find);
+		
+		
+		/* just a test of navigation
+		String locationUrl = "google.navigation:q=42.38753,-71.2204";
+		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(locationUrl));
+		startActivity(intent); */
 
 		//inflate layout
 		spinner = (Spinner) findViewById(R.id.spinner1);
