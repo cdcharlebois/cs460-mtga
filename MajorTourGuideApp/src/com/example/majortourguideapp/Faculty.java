@@ -1,15 +1,55 @@
 package com.example.majortourguideapp;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.app.Activity;
+import android.database.Cursor;
+import android.util.Log;
 import android.view.Menu;
 
 public class Faculty extends Activity {
 
+	private ArrayList<Faculty_model> faculty = new ArrayList<Faculty_model>();
+	private int major;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_faculty);
+		
+		//inflate layout
+		
+		//set listeners
+		
+		//get extras
+		getIntent().getExtras().getInt("major");
+		major = getIntent().getExtras().getInt("major");
+		Log.i("cdc", "major = "+major);
+		
+		//query db
+		DB_Helper db = new DB_Helper(this);
+		Cursor c = db.selectFromXwhereY(DB_Contract.Professor.TABLE_NAME, DB_Contract.Professor.COLUMN_DEPARTMENT+" = "+major);
+		c.moveToFirst();
+		do{ //for each row
+			String name = c.getString(c.getColumnIndexOrThrow(DB_Contract.Professor.COLUMN_NAME));
+			String email = c.getString(c.getColumnIndexOrThrow(DB_Contract.Professor.COLUMN_EMAIL));
+			String phone = c.getString(c.getColumnIndexOrThrow(DB_Contract.Professor.COLUMN_PHONE));
+			String building = c.getString(c.getColumnIndexOrThrow(DB_Contract.Professor.COLUMN_BUILDING));
+			String room = c.getString(c.getColumnIndexOrThrow(DB_Contract.Professor.COLUMN_ROOM));
+			String dept = c.getString(c.getColumnIndexOrThrow(DB_Contract.Professor.COLUMN_DEPARTMENT));
+			String link = c.getString(c.getColumnIndexOrThrow(DB_Contract.Professor.COLUMN_LINK));
+			String picture = c.getString(c.getColumnIndexOrThrow(DB_Contract.Professor.COLUMN_PICTURE));
+			
+			faculty.add(new Faculty_model(name, email, phone, building, room, dept, link, picture));
+			/* --- TEST --- */
+			if(faculty.get(faculty.size()-1).getDept().equals("1"))
+				Log.i("cdc-prof", faculty.get(faculty.size()-1).getName());
+			/* --- /test --- */
+			c.moveToNext();
+		}while(!c.isAfterLast()); //stop after last row
+		db.close();
+		
+		//display
 	}
 
 	@Override

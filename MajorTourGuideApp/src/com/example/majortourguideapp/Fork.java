@@ -62,6 +62,7 @@ public class Fork extends Activity implements OnClickListener {
 		Cursor c = db.selectFromXwhereY(DB_Contract.Major.TABLE_NAME, DB_Contract.Major.COLUMN_MAJOR_ID+" = "+major);
 		c.moveToFirst();
 		String selected_major = c.getString(c.getColumnIndexOrThrow(DB_Contract.Major.COLUMN_NAME));
+		db.close();
 		
 		// display the text
 		lblMajor.setText("You've selected "+selected_major);
@@ -90,6 +91,9 @@ public class Fork extends Activity implements OnClickListener {
 			break;
 		case R.id.btnFaculty:
 			//Do some different stuff
+			i.setComponent(new ComponentName("com.example.majortourguideapp",
+	       			"com.example.majortourguideapp.Faculty"));
+			i.putExtra("major", major);
 			name="Faculty";
 			break;
 		case R.id.btnCore:

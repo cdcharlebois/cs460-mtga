@@ -18,6 +18,8 @@ public abstract class DB_Contract {
 		public static final String COLUMN_BUILDING = "building";
 		public static final String COLUMN_ROOM = "room";
 		public static final String COLUMN_DEPARTMENT = "major_id_fk";
+		public static final String COLUMN_LINK = "profile_link";
+		public static final String COLUMN_PICTURE = "profile_picture";
 		
 	}
 	

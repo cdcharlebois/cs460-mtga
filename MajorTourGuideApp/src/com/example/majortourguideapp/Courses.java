@@ -52,6 +52,7 @@ public class Courses extends ListActivity {
 			courses.add(course_code + ": " + course_desc);
 			c.moveToNext();
 		}while(!c.isAfterLast()); //stop after last row
+		db.close();
 		
 		
 		
