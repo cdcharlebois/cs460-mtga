@@ -13,11 +13,6 @@
     <string name="title_activity_dbtest">DBTest</string>
     <string name="action_settings">Settings</string>
 
-    <string-array name="CIS_destinations">
-        <item>Academic Advising</item>
-        <item>CIS Department Chair</item>
-        <item>CIS Sandbox</item>
-        <item>Library</item>
-    </string-array>
+
     
 </resources>

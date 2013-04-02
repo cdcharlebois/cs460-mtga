@@ -10,18 +10,11 @@
         android:layout_height="48dip"
         android:layout_alignParentTop="true" />
 
-	<!-- <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.MapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/spinner1" />
- -->
- 	<ImageView
-    android:id="@+id/image"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_below="@id/spinner1" 
-    />
+	 <include
+	     android:id="@+id/map"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"
+	     android:layout_below="@+id/spinner1"
+	     layout="@layout/map_frag" />
  
 </RelativeLayout>
