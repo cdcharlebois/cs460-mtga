@@ -199,7 +199,7 @@ public class Find extends Activity implements OnItemSelectedListener {
 				.position(new LatLng(Float.parseFloat(entLat),Float.parseFloat(entLng)))
 				.title(entName)
 				.snippet("enter here")
-				.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher))
+				.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
 		);
 	}
 	
