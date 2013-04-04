@@ -1,3 +1,25 @@
+/**
+ * ====== ========= ======
+ * ------ FIND.JAVA ------
+ * ====== ========= ======
+ * Extends: Activity
+ * Implements: OnItemSelectedListner
+ * Methods:
+ * 	=== onCreate ===
+ * 	-> Android lifecycle method to inflate the layout and set listeners
+ * 	=== onCreateOptionsMenu ===
+ * 	-> used to modify navigation buttons
+ * 	=== onOptionsItemSelected ===
+ * 	-> sets the snippet at the bottom of the screen to match the selected destination
+ * 	=== onItemsSelected ===
+ * 	=== onNothingSelected ===
+ * 
+ * @author CS480/460 Team A
+ * 	=== MODIFICATIONS ===
+ * 	04/04/2013 -> added code to match snippet to destination
+ * 
+ */
+
 package com.example.majortourguideapp;
 
 import java.util.ArrayList;
@@ -11,6 +33,11 @@ import android.database.Cursor;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -26,7 +53,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.CameraUpdateFactory;
 
-public class Find extends Activity {
+
+public class Find extends Activity implements OnItemSelectedListener {
 	private Spinner spinner;
 	int major;
 	private ImageView img;
@@ -35,6 +63,7 @@ public class Find extends Activity {
 	private GoogleMap map;
 	private LatLng position = new LatLng(42.38781,-71.22008);
 	private TextView blurb;
+	private int sel;	//currently selected item from the spinner
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +97,7 @@ public class Find extends Activity {
 		do{
 			String destName = c.getString(c.getColumnIndexOrThrow(DB_Contract.Destination.COLUMN_NAME));
 			String destId = c.getString(c.getColumnIndexOrThrow(DB_Contract.Destination.COLUMN_LOCATION));
-			String destBlurb = "";
-			try{
-				destBlurb = c.getString(c.getColumnIndexOrThrow(DB_Contract.Destination.COLUMN_BLURB));
-			}
-			catch(Exception e){
-				
-			}
+			String destBlurb = c.getString(c.getColumnIndexOrThrow(DB_Contract.Destination.COLUMN_BLURB));
 			destinations.add(new destination_model(destName,destId,destBlurb));
 			c.moveToNext();
 		}while(!c.isAfterLast());
@@ -85,12 +108,14 @@ public class Find extends Activity {
 				this,
 				android.R.layout.simple_list_item_1,
 				destinations);
-		
-		
 		aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(aa);
+		spinner.setOnItemSelectedListener(this);
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -100,6 +125,9 @@ public class Find extends Activity {
 	
 	
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+	 */
 	@Override
 	/**
 	 * NavBar Up navigation
@@ -122,5 +150,29 @@ public class Find extends Activity {
 	    }
 	    return super.onOptionsItemSelected(item);
 	}
+
+	/* (non-Javadoc)
+	 * @see android.widget.AdapterView.OnItemSelectedListener#onItemSelected(android.widget.AdapterView, android.view.View, int, long)
+	 */
+	@Override
+	public void onItemSelected(AdapterView<?> arg0, View v, int pos,
+			long arg3) {
+		// TODO Auto-generated method stub
+		Log.i("cdc", "View = " + v + " pos = " + pos);
+		String selBlurb = destinations.get(pos).getBlurb();
+		Log.i("cdc", "selected = "+destinations.get(pos)+ ", selBlurb = "+selBlurb);
+		blurb.setText(selBlurb);
+	}
+
+	/* (non-Javadoc)
+	 * @see android.widget.AdapterView.OnItemSelectedListener#onNothingSelected(android.widget.AdapterView)
+	 */
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 
 }
