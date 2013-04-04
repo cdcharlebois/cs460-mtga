@@ -24,10 +24,13 @@ package com.example.majortourguideapp;
 
 import java.util.ArrayList;
 
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.util.Log;
@@ -42,7 +45,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
@@ -64,6 +66,7 @@ public class Find extends Activity implements OnItemSelectedListener {
 	private LatLng position = new LatLng(42.38781,-71.22008);
 	private TextView blurb;
 	private int sel;	//currently selected item from the spinner
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +84,7 @@ public class Find extends Activity implements OnItemSelectedListener {
 		spinner = (Spinner) findViewById(R.id.spinner1);
 		blurb = (TextView) findViewById(R.id.map_blurb);
 		map = ((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
-
+		
 		
 		//initialize
 		major = getIntent().getExtras().getInt("major");
@@ -90,7 +93,13 @@ public class Find extends Activity implements OnItemSelectedListener {
 		map.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 17.0f));
 		
 		
+		//draw the current position
+		//--see below	
+		
+		
+		
 		//populate the list of destinations from the major
+		//--would be good to thread this
 		DB_Helper db = new DB_Helper(this);
 		Cursor c = db.selectFromXwhereY(DB_Contract.Destination.TABLE_NAME, DB_Contract.Destination.COLUMN_MAJOR+" = "+major);
 		c.moveToFirst();
@@ -157,11 +166,13 @@ public class Find extends Activity implements OnItemSelectedListener {
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View v, int pos,
 			long arg3) {
-		// TODO Auto-generated method stub
+		map.clear(); 	//clear current markers
 		Log.i("cdc", "View = " + v + " pos = " + pos);
 		String selBlurb = destinations.get(pos).getBlurb();
 		Log.i("cdc", "selected = "+destinations.get(pos)+ ", selBlurb = "+selBlurb);
 		blurb.setText(selBlurb);
+		addEntranceMarker(pos);
+		
 	}
 
 	/* (non-Javadoc)
@@ -173,6 +184,24 @@ public class Find extends Activity implements OnItemSelectedListener {
 		
 	}
 	
+	private void addEntranceMarker(int posInList){
+		/* find a better way to do this */
+		DB_Helper db = new DB_Helper(this);
+		Cursor c = db.selectFromXwhereY(DB_Contract.Entrance.TABLE_NAME, DB_Contract.Entrance.COLUMN_LOCATION+" = "+destinations.get(posInList).getDestination_id());
+		c.moveToFirst();
+		String entName = c.getString(c.getColumnIndexOrThrow(DB_Contract.Entrance.COLUMN_NAME));
+		String entLat = c.getString(c.getColumnIndexOrThrow(DB_Contract.Entrance.COLUMN_LAT));
+		String entLng = c.getString(c.getColumnIndexOrThrow(DB_Contract.Entrance.COLUMN_LONG));
+		db.close();
+		
+		map.addMarker(
+			new MarkerOptions()
+				.position(new LatLng(Float.parseFloat(entLat),Float.parseFloat(entLng)))
+				.title(entName)
+				.snippet("enter here")
+				.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher))
+		);
+	}
 	
 
 }
