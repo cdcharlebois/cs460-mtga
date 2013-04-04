@@ -20,7 +20,7 @@ public class DB_Helper extends SQLiteOpenHelper {
 		Variables for helper
 		---------- */
 	public static final String DATABASE_NAME = "mtga.db";
-	public static final int DATABASE_VERSION = 1;	//if you change the schema, you need to update this.
+	public static final int DATABASE_VERSION = 42;	//if you change the schema, you need to update this.
 	
 	/* ----------
 		Variables for SQL
@@ -113,11 +113,11 @@ public static final String SQL_POPULATE_DESTINATIONS =
 "('1', '101', 'CIS Sandbox', '234', 'The CIS Sandbox is located on the seond floor of Smith. After entering the building, take the stairs down one flight and head left towards the Bentley Trading Room. Once at the Trading Room, continue left to arrive at the CIS Sandbox located in Smith 234.'),"+
 "('2', '105', 'Library', '', ''),"+
 "('2', '107', 'Academic Advising', '21', ''),"+
-"('2', '104', 'Accounting Department Chair', '212', 'Accounting Department Chair, Mark Nixon, is located on the second floor of Adamian. After entering the building, continue to the stairs located on the right side of the lobby. Once at the second floor, continue straight about 50 ft to the Accounting Department located on the left. Mark Nixons office is located in room 212'),"+
+"('2', '104', 'Accounting Department Chair', '212', 'Accounting Department Chair, Mark Nixon, is located on the second floor of Adamian. After entering the building, continue to the stairs located on the right side of the lobby. Once at the second floor, continue straight about 50 ft to the Accounting Department located on the left. Mark Nixon''s office is located in room 212'),"+
 "('2', '102', 'ACELAB', '300', 'The ACELAB is located on the third floor of Jennison. After entering the building, turn left towards the Jennison elevator and continue straight to the ACELAB located in Jennison 300.'),"+
 "('3', '105', 'Library', '', ''),"+
 "('3', '107', 'Academic Advising', '21', ''),"+
-"('3', '104', 'Finance Department Chair', '215', 'Finance Department Chair, Atul Gupta, is located on the second floor of Adamian. After entering the building, continue to the stairs located on the right side of the lobby. Once at the second floor, continue straight about 50ft to the Finance Department located on the right. Atul Guptas office is located in room 215'),"+
+"('3', '104', 'Finance Department Chair', '215', 'Finance Department Chair, Atul Gupta, is located on the second floor of Adamian. After entering the building, continue to the stairs located on the right side of the lobby. Once at the second floor, continue straight about 50ft to the Finance Department located on the right. Atul Gupta''s office is located in room 215'),"+
 "('3', '101', 'Trading Room', '226', 'The Bentley Trading Room is located on the second floor of Smith. After entering the building, take the stairs down one flight and turn left to arrive at the Bentley Trading Room. '),"+
 "('4', '105', 'Library', '', ''),"+
 "('4', '107', 'Academic Advising', '21', ''),"+
