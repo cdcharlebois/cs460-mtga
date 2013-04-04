@@ -8,11 +8,14 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
@@ -27,9 +30,11 @@ public class Find extends Activity {
 	private Spinner spinner;
 	int major;
 	private ImageView img;
-	private ArrayList<String> destinations = new ArrayList<String>();
+	private ArrayList<destination_model> destinations = new ArrayList<destination_model>();
 	private ArrayAdapter<String> aa;
 	private GoogleMap map;
+	private LatLng position = new LatLng(42.38781,-71.22008);
+	private TextView blurb;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +50,16 @@ public class Find extends Activity {
 
 		//inflate layout
 		spinner = (Spinner) findViewById(R.id.spinner1);
-//		img = (ImageView)findViewById(R.id.image);
-		map = ((MapFragment)getFragmentManager(). findFragmentById(R.id.map)).getMap();
-		
+		blurb = (TextView) findViewById(R.id.map_blurb);
+		map = ((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
 
 		
 		//initialize
 		major = getIntent().getExtras().getInt("major");
 		map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+		Log.i("cdc", "map set to sattelite");
+		map.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 17.0f));
+		
 		
 		//populate the list of destinations from the major
 		DB_Helper db = new DB_Helper(this);
@@ -60,13 +67,21 @@ public class Find extends Activity {
 		c.moveToFirst();
 		do{
 			String destName = c.getString(c.getColumnIndexOrThrow(DB_Contract.Destination.COLUMN_NAME));
-			destinations.add(destName);
+			String destId = c.getString(c.getColumnIndexOrThrow(DB_Contract.Destination.COLUMN_LOCATION));
+			String destBlurb = "";
+			try{
+				destBlurb = c.getString(c.getColumnIndexOrThrow(DB_Contract.Destination.COLUMN_BLURB));
+			}
+			catch(Exception e){
+				
+			}
+			destinations.add(new destination_model(destName,destId,destBlurb));
 			c.moveToNext();
 		}while(!c.isAfterLast());
 		db.close();
 		
 		//assign the arrayList to the adapter.
-		ArrayAdapter<String> aa = new ArrayAdapter<String>(
+		ArrayAdapter<destination_model> aa = new ArrayAdapter<destination_model>(
 				this,
 				android.R.layout.simple_list_item_1,
 				destinations);

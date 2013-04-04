@@ -35,6 +35,7 @@ public abstract class DB_Contract {
 		public static final String COLUMN_LOCATION = "location_id";
 		public static final String COLUMN_NAME = "name";
 		public static final String COLUMN_ROOM = "room";
+		public static final String COLUMN_BLURB = "blurb";
 	}
 	
 	public static abstract class Entrance implements BaseColumns{
