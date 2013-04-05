@@ -1,14 +1,22 @@
+/**
+ * Faculty.java
+ * Android activity to show a list of professors
+ * Date: 04/05/2013
+ * @author CHARLEB_CONN
+ */
+
 package com.example.majortourguideapp;
 
 import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.ListActivity;
 import android.database.Cursor;
 import android.util.Log;
 import android.view.Menu;
 
-public class Faculty extends Activity {
+public class Faculty extends ListActivity {
 
 	private ArrayList<Faculty_model> faculty = new ArrayList<Faculty_model>();
 	private int major;
@@ -20,6 +28,7 @@ public class Faculty extends Activity {
 		//inflate layout
 		
 		//set listeners
+		// => none for now
 		
 		//get extras
 		getIntent().getExtras().getInt("major");
@@ -49,7 +58,12 @@ public class Faculty extends Activity {
 		}while(!c.isAfterLast()); //stop after last row
 		db.close();
 		
-		//display
+		// setup the data adapter
+		CustomAdapter adapter = new CustomAdapter(this, R.layout.list_item, this.faculty);
+		
+		//specify the list adapter
+		setListAdapter(adapter);
+		
 	}
 
 	@Override
