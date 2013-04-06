@@ -165,7 +165,7 @@ containing a value of this type.
         public static final int wong=0x7f020008;
     }
     public static final class id {
-        public static final int action_settings=0x7f04001a;
+        public static final int action_settings=0x7f04001c;
         public static final int btnAC=0x7f040010;
         public static final int btnCIS=0x7f04000f;
         public static final int btnCore=0x7f04000c;
@@ -183,10 +183,12 @@ containing a value of this type.
         public static final int llButtonWrapper2=0x7f040011;
         public static final int map=0x7f040007;
         public static final int map_blurb=0x7f040006;
-        public static final int menu_settings=0x7f040019;
+        public static final int menu_settings=0x7f04001b;
         public static final int none=0x7f040000;
         public static final int normal=0x7f040001;
         public static final int office=0x7f040017;
+        public static final int phone=0x7f040019;
+        public static final int profile=0x7f04001a;
         public static final int satellite=0x7f040002;
         public static final int spinner1=0x7f040005;
         public static final int terrain=0x7f040003;

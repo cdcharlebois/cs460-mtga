@@ -11,12 +11,23 @@
 
 package com.example.majortourguideapp;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.net.Uri;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
@@ -28,7 +39,8 @@ public class CustomAdapter extends BaseAdapter {
 	private int resource;
 	// store (a reference to) the data
 	private ArrayList<Faculty_model> data;
-	
+	private Context ctx;
+
 	/**
 	 * Default constructor. Creates the new Adaptor object to
 	 * provide a ListView with data.
@@ -40,22 +52,23 @@ public class CustomAdapter extends BaseAdapter {
 		this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.resource = resource;
 		this.data = data;
+		this.ctx = context;
 	}
-	
+
 	/**
 	 * Return the size of the data set.
 	 */
 	public int getCount() {
 		return this.data.size();
 	}
-	
+
 	/**
 	 * Return an object in the data set.
 	 */
 	public Object getItem(int position) {
 		return this.data.get(position);
 	}
-	
+
 	/**
 	 * Return the position provided.
 	 */
@@ -69,55 +82,86 @@ public class CustomAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// reuse a given view, or inflate a new one from the xml
 		View view;
-		 
+
 		if (convertView == null) {
 			view = this.inflater.inflate(resource, parent, false);
 		} else {
 			view = convertView;
 		}
-		
+
 		// bind the data to the view object
-		return this.bindData(view, position);	//CC -> see note below
+		return this.bindData(view, position);	
 	}
-	
+
 	/**
 	 * Bind the provided data to the view.
 	 * This is the only method not required by base adapter.
 	 */
-	/* ==============================================================+
-	 * This stuff needs to be changed to pull from the Faculty_model |
-	 * --------------------------------------------------------------+
 	public View bindData(View view, int position) {
 		// make sure it's worth drawing the view
 		if (this.data.get(position) == null) {
 			return view;
 		}
-		
+
 		// pull out the object
-		ListItem item = this.data.get(position);			// Curtis, note that this is pulling from ListItem, we need to get the info from Faculty_model,
-															// which is stored in this.data (passed from Faculty.java)
-		
+		Faculty_model item = this.data.get(position);			
+		// which is stored in this.data (passed from Faculty.java)
+
 		// extract the view object
 		View viewElement = view.findViewById(R.id.title);
 		// cast to the correct type
 		TextView tv = (TextView)viewElement;
 		// set the value
-		tv.setText(item.title);
-		
-		
+		tv.setText(item.getName());
+
+
 		viewElement = view.findViewById(R.id.office);
 		tv = (TextView)viewElement;
-		tv.setText(item.office);
-		
+		tv.setText(item.getDeptString());
+
 		viewElement = view.findViewById(R.id.email);
 		tv = (TextView)viewElement;
-		tv.setText(item.email);
-		
-	
-		
+		tv.setText(item.getEmail());
+
+		viewElement = view.findViewById(R.id.phone);
+		tv = (TextView)viewElement;
+		tv.setText(item.getPhone());
+
+		viewElement = view.findViewById(R.id.profile);
+		tv = (TextView)viewElement;
+		tv.setText(item.getLink());
+
+		viewElement = view.findViewById(R.id.list_image);
+		ImageView iv = (ImageView)viewElement;
+		iv.setImageDrawable(item.getPicture_draw());
+
+
 		// return the final view object
 		return view;
-		
+
 	}
-	======================= /need_change ===============================*/
+	
+	/* ======================================================================================+
+	 * This is a terrible way to do this. This image loading needs to happen in a new thread |
+	 * --------------------------------------------------------------------------------------+
+	 */
+	private Drawable getImg(String imageUrl){
+		if (android.os.Build.VERSION.SDK_INT > 9) {
+		      StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		      StrictMode.setThreadPolicy(policy);
+		}
+		try {
+			Drawable d = Drawable.createFromStream(((InputStream)new URL(imageUrl).openStream()),"test");
+			return d; 
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+
 }

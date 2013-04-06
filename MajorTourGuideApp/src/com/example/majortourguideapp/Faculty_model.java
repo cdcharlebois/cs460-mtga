@@ -1,5 +1,10 @@
 package com.example.majortourguideapp;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
+
 public class Faculty_model {
 	private String name;
 	private String email;
@@ -9,9 +14,11 @@ public class Faculty_model {
 	private String dept;
 	private String link;
 	private String picture;
+	private String dept_string;
+	private Drawable picture_draw;
 
 	public Faculty_model(String name, String email, String phone, 
-			String building, String room, String dept, String link, String picture){
+			String building, String room, String dept, String link, Drawable picture_d, String dept_name){
 		setName(name);
 		setEmail(email);
 		setPhone(phone);
@@ -19,7 +26,25 @@ public class Faculty_model {
 		setRoom(room);
 		setDept(dept);
 		setLink(link);
-		setPicture(picture);
+		//setPicture(picture);
+		setPicture_draw(picture_d);
+		setDept_string(dept_name);
+	}
+
+	public String getDept_string() {
+		return dept_string;
+	}
+
+	public void setDept_string(String dept_string) {
+		this.dept_string = dept_string;
+	}
+
+	public Drawable getPicture_draw() {
+		return picture_draw;
+	}
+
+	public void setPicture_draw(Drawable picture_draw) {
+		this.picture_draw = picture_draw;
 	}
 
 	public String getName() {
@@ -84,6 +109,11 @@ public class Faculty_model {
 
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+	
+	public String getDeptString(){
+		return this.dept_string;
+				
 	}
 	
 }

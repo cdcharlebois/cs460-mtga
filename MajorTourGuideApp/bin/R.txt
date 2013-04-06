@@ -36,7 +36,7 @@ int drawable marker 0x7f020005
 int drawable nav 0x7f020006
 int drawable nopicture 0x7f020007
 int drawable wong 0x7f020008
-int id action_settings 0x7f04001a
+int id action_settings 0x7f04001c
 int id btnAC 0x7f040010
 int id btnCIS 0x7f04000f
 int id btnCore 0x7f04000c
@@ -54,10 +54,12 @@ int id llButtonWrapper1 0x7f04000e
 int id llButtonWrapper2 0x7f040011
 int id map 0x7f040007
 int id map_blurb 0x7f040006
-int id menu_settings 0x7f040019
+int id menu_settings 0x7f04001b
 int id none 0x7f040000
 int id normal 0x7f040001
 int id office 0x7f040017
+int id phone 0x7f040019
+int id profile 0x7f04001a
 int id satellite 0x7f040002
 int id spinner1 0x7f040005
 int id terrain 0x7f040003
