@@ -39,7 +39,7 @@
            android:height="48dp"
            android:text="Faculty..."
            android:width="200dip" 
-           android:background="@color/red"
+           android:background="@color/blue"
            android:textColor="@color/white"
            android:layout_margin="3dip"/>
 

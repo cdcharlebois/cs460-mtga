@@ -89,6 +89,7 @@ public class Find extends Activity implements OnItemSelectedListener {
 		//initialize
 		major = getIntent().getExtras().getInt("major");
 		map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+		//map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 		Log.i("cdc", "map set to sattelite");
 		map.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 17.0f));
 		
