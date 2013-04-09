@@ -157,12 +157,14 @@ containing a value of this type.
         public static final int blue_pin=0x7f020000;
         public static final int blue_pin_me=0x7f020001;
         public static final int blue_pin_sm=0x7f020002;
-        public static final int ic_action_search=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int marker=0x7f020005;
-        public static final int nav=0x7f020006;
-        public static final int nopicture=0x7f020007;
-        public static final int wong=0x7f020008;
+        public static final int green_pin=0x7f020003;
+        public static final int ic_action_search=0x7f020004;
+        public static final int ic_launcher=0x7f020005;
+        public static final int marker=0x7f020006;
+        public static final int nav=0x7f020007;
+        public static final int nopicture=0x7f020008;
+        public static final int red_pin=0x7f020009;
+        public static final int wong=0x7f02000a;
     }
     public static final class id {
         public static final int action_settings=0x7f04001c;

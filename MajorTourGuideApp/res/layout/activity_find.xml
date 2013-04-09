@@ -15,7 +15,10 @@
 	     android:layout_height="wrap_content"
 	     android:layout_width="fill_parent"
 	     android:text="When you reach your destination..."
-	     android:layout_alignParentBottom="true" />
+	     android:layout_alignParentBottom="true" 
+	     android:padding="6dip"
+	     android:background="@color/blue"
+	     android:textColor="@color/white"/>
 	 
 	 <include
 	     android:id="@+id/map"

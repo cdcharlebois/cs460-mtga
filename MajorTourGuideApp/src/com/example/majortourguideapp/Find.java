@@ -22,12 +22,20 @@
 
 package com.example.majortourguideapp;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -45,6 +53,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.majortourguideapp.MyLocation.LocationResult;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
@@ -66,15 +77,16 @@ public class Find extends Activity implements OnItemSelectedListener {
 	private LatLng position = new LatLng(42.38781,-71.22008);
 	private TextView blurb;
 	private int sel;	//currently selected item from the spinner
-	
+	private LatLng curr_location;	//user's location
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.activity_find);
-		
-		
+
+
 		/* just a test of navigation
 		String locationUrl = "google.navigation:q=42.38753,-71.2204";
 		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(locationUrl));
@@ -84,21 +96,29 @@ public class Find extends Activity implements OnItemSelectedListener {
 		spinner = (Spinner) findViewById(R.id.spinner1);
 		blurb = (TextView) findViewById(R.id.map_blurb);
 		map = ((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
-		
-		
+
+
 		//initialize
 		major = getIntent().getExtras().getInt("major");
 		map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 		//map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 		Log.i("cdc", "map set to sattelite");
 		map.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 17.0f));
-		
-		
+
+
 		//draw the current position
-		//--see below	
-		
-		
-		
+		//--see below
+		// Use the LocationManager class to obtain GPS locations 
+		LocationManager locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		LocationListener locListener = new MyLocationListener();
+
+		//Register for location updates using the named provider, and a pending intent.
+		//3 second minimum interval between updates, 0 meters minimum distance between updates
+		locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 0,
+				locListener);
+
+
+
 		//populate the list of destinations from the major
 		//--would be good to thread this
 		DB_Helper db = new DB_Helper(this);
@@ -112,7 +132,7 @@ public class Find extends Activity implements OnItemSelectedListener {
 			c.moveToNext();
 		}while(!c.isAfterLast());
 		db.close();
-		
+
 		//assign the arrayList to the adapter.
 		ArrayAdapter<destination_model> aa = new ArrayAdapter<destination_model>(
 				this,
@@ -132,9 +152,9 @@ public class Find extends Activity implements OnItemSelectedListener {
 		getMenuInflater().inflate(R.menu.activity_find, menu);
 		return true;
 	}
-	
-	
-	
+
+
+
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
 	 */
@@ -143,22 +163,22 @@ public class Find extends Activity implements OnItemSelectedListener {
 	 * NavBar Up navigation
 	 */
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	            // This is called when the Home (Up) button is pressed
-	            // in the Action Bar.
-	            Intent parentActivityIntent = new Intent();
-	            parentActivityIntent.setComponent(new ComponentName("com.example.majortourguideapp",
-	            		"com.example.majortourguideapp.Fork"));
-	            parentActivityIntent.addFlags(
-	                    Intent.FLAG_ACTIVITY_CLEAR_TOP |
-	                    Intent.FLAG_ACTIVITY_NEW_TASK);
-	            parentActivityIntent.putExtra("major", major);	//since Fork requires a major, give it back
-	            startActivity(parentActivityIntent);
-	            finish();
-	            return true;
-	    }
-	    return super.onOptionsItemSelected(item);
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// This is called when the Home (Up) button is pressed
+			// in the Action Bar.
+			Intent parentActivityIntent = new Intent();
+			parentActivityIntent.setComponent(new ComponentName("com.example.majortourguideapp",
+					"com.example.majortourguideapp.Fork"));
+			parentActivityIntent.addFlags(
+					Intent.FLAG_ACTIVITY_CLEAR_TOP |
+					Intent.FLAG_ACTIVITY_NEW_TASK);
+			parentActivityIntent.putExtra("major", major);	//since Fork requires a major, give it back
+			startActivity(parentActivityIntent);
+			finish();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	/* (non-Javadoc)
@@ -174,6 +194,7 @@ public class Find extends Activity implements OnItemSelectedListener {
 		blurb.setText(selBlurb);
 		addEntranceMarker(pos);
 		
+
 	}
 
 	/* (non-Javadoc)
@@ -182,9 +203,25 @@ public class Find extends Activity implements OnItemSelectedListener {
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+	private void addCurrentMarker(LatLng here){
+		double lat = 0, lng = 0;
+		if(here != null){
+			lat = here.latitude;
+			lng = here.longitude;
+			Log.i("cdc", "adding current marker");
+			curr_location = new LatLng(lat,lng);
+		}
+		map.addMarker(
+				new MarkerOptions()
+				.position(new LatLng(lat,lng))
+				.title("You")
+				.snippet("are here")
+				.icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin))
+				);
+	}
+
 	private void addEntranceMarker(int posInList){
 		/* find a better way to do this */
 		DB_Helper db = new DB_Helper(this);
@@ -194,15 +231,83 @@ public class Find extends Activity implements OnItemSelectedListener {
 		String entLat = c.getString(c.getColumnIndexOrThrow(DB_Contract.Entrance.COLUMN_LAT));
 		String entLng = c.getString(c.getColumnIndexOrThrow(DB_Contract.Entrance.COLUMN_LONG));
 		db.close();
-		
+
 		map.addMarker(
-			new MarkerOptions()
+				new MarkerOptions()
 				.position(new LatLng(Float.parseFloat(entLat),Float.parseFloat(entLng)))
 				.title(entName)
 				.snippet("enter here")
-				.icon(BitmapDescriptorFactory.fromResource(R.drawable.blue_pin_me))
-		);
+				.icon(BitmapDescriptorFactory.fromResource(R.drawable.red_pin))
+				);
+		//getJSONDirections(curr_location,new LatLng(Float.parseFloat(entLat),Float.parseFloat(entLng)));
+		/*getJSONDirections(new LatLng(42.38753,-71.2204),
+				new LatLng(Float.parseFloat(entLat),Float.parseFloat(entLng)));*/
+	}
+
+	//get directions
+	private void getJSONDirections(LatLng start, LatLng stop){
+		/* === not_good === */
+		if (android.os.Build.VERSION.SDK_INT > 9) {
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+			StrictMode.setThreadPolicy(policy);
+		}
+		/* --- /not_good --- */
+		String pair1 = "" + start.latitude + "," + start.longitude;
+		String pair2 = "" + stop.latitude + "," + stop.longitude;
+		String url = "https://maps.googleapis.com/maps/api/directions/json?" +
+				"origin=" + pair1 + 
+				"&destination=" + pair2 +
+				"&sensor=false" +
+				"&mode=walking";
+		//Log.i("cdc",url);
+		try {
+			JSONObject dir = JSONReader.readJsonFromUrl(url);
+			Log.i("cdc", dir.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
+	public class MyLocationListener implements LocationListener {
+
+		@Override
+		public void onLocationChanged(Location loc) {
+
+			loc.getLatitude();
+			loc.getLongitude();
+
+			/*String Text = "My current location is: " +
+			"Latitude = " + loc.getLatitude() +
+			"Longitude = " + loc.getLongitude();
+
+			Toast.makeText(getApplicationContext(), Text, Toast.LENGTH_SHORT)
+					.show();*/
+			
+			addCurrentMarker(new LatLng(loc.getLatitude(),loc.getLongitude()));
+		}
+
+		@Override
+		public void onProviderDisabled(String provider) {
+			Toast.makeText(getApplicationContext(), "Gps Disabled",
+					Toast.LENGTH_SHORT).show();
+		}
+
+		@Override
+		public void onProviderEnabled(String provider) {
+			Toast.makeText(getApplicationContext(),
+			"Gps Enabled", Toast.LENGTH_SHORT).show();
+		}
+
+		@Override
+		public void onStatusChanged(String provider, int status, Bundle extras) {
+
+		}
+
+	}// End MyLocationListener
+
 
 }

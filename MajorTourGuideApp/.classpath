@@ -10,5 +10,6 @@
 			<attribute name="javadoc_location" value="file:/C:/Program%20Files%20(x86)/Android/android-sdk/extras/google/google_play_services/libproject/google-play-services_lib/libs/../../../docs/reference/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/CHARLEB_CONN/Dropbox/Bentley/Ju_2/CS480/Code/cs460-mtga/assets/google-gson-2.2.2/gson-2.2.2.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
