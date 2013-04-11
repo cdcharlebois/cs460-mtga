@@ -26,6 +26,6 @@
 	     android:layout_height="fill_parent"
 	     android:layout_below="@id/spinner1"
 	     android:layout_above="@id/map_blurb"
-	     layout="@layout/map_frag" />"
+	     layout="@layout/map_frag" />
  
 </RelativeLayout>
