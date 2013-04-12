@@ -17,6 +17,7 @@
  * @author CS480/460 Team A
  * 	=== MODIFICATIONS ===
  * 	04/04/2013 -> added code to match snippet to destination
+ * 	04/12/2013 -> added polyline support, organized code to be more modular 
  * 
  */
 
@@ -27,6 +28,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -64,6 +66,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.CameraUpdateFactory;
 
 
@@ -128,7 +131,7 @@ public class Find extends Activity implements OnItemSelectedListener {
 			String destName = c.getString(c.getColumnIndexOrThrow(DB_Contract.Destination.COLUMN_NAME));
 			String destId = c.getString(c.getColumnIndexOrThrow(DB_Contract.Destination.COLUMN_LOCATION));
 			String destBlurb = c.getString(c.getColumnIndexOrThrow(DB_Contract.Destination.COLUMN_BLURB));
-			destinations.add(new destination_model(destName,destId,destBlurb));
+			destinations.add(new destination_model(destName,destId,destBlurb,this));
 			c.moveToNext();
 		}while(!c.isAfterLast());
 		db.close();
@@ -192,8 +195,10 @@ public class Find extends Activity implements OnItemSelectedListener {
 		String selBlurb = destinations.get(pos).getBlurb();
 		Log.i("cdc", "selected = "+destinations.get(pos)+ ", selBlurb = "+selBlurb);
 		blurb.setText(selBlurb);
-		addEntranceMarker(pos);
-		
+		map.addMarker(getEntranceMarker(pos));
+		map.addMarker(getStartMarker(curr_location));
+		map.addPolyline(getPolyline(curr_location,destinations.get(pos).getEntrance()));
+
 
 	}
 
@@ -205,73 +210,36 @@ public class Find extends Activity implements OnItemSelectedListener {
 		// TODO Auto-generated method stub
 
 	}
-	private void addCurrentMarker(LatLng here){
-		double lat = 0, lng = 0;
+	private MarkerOptions getStartMarker(LatLng here){
+		double lat = 42.390041, lng = -71.222726;
 		if(here != null){
 			lat = here.latitude;
 			lng = here.longitude;
 			Log.i("cdc", "adding current marker");
-			curr_location = new LatLng(lat,lng);
 		}
-		map.addMarker(
-				new MarkerOptions()
-				.position(new LatLng(lat,lng))
-				.title("You")
-				.snippet("are here")
-				.icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin))
-				);
+		curr_location = new LatLng(lat,lng);
+		MarkerOptions m = new MarkerOptions()
+		.position(new LatLng(curr_location.latitude, curr_location.longitude))
+		.title("You")
+		.snippet("are here")
+		.icon(BitmapDescriptorFactory.fromResource(R.drawable.green_pin));
+		return m;
 	}
 
-	private void addEntranceMarker(int posInList){
+	private MarkerOptions getEntranceMarker(int posInList){
 		/* find a better way to do this */
-		DB_Helper db = new DB_Helper(this);
-		Cursor c = db.selectFromXwhereY(DB_Contract.Entrance.TABLE_NAME, DB_Contract.Entrance.COLUMN_LOCATION+" = "+destinations.get(posInList).getDestination_id());
-		c.moveToFirst();
-		String entName = c.getString(c.getColumnIndexOrThrow(DB_Contract.Entrance.COLUMN_NAME));
-		String entLat = c.getString(c.getColumnIndexOrThrow(DB_Contract.Entrance.COLUMN_LAT));
-		String entLng = c.getString(c.getColumnIndexOrThrow(DB_Contract.Entrance.COLUMN_LONG));
-		db.close();
 
-		map.addMarker(
-				new MarkerOptions()
-				.position(new LatLng(Float.parseFloat(entLat),Float.parseFloat(entLng)))
-				.title(entName)
-				.snippet("enter here")
-				.icon(BitmapDescriptorFactory.fromResource(R.drawable.red_pin))
-				);
-		//getJSONDirections(curr_location,new LatLng(Float.parseFloat(entLat),Float.parseFloat(entLng)));
-		/*getJSONDirections(new LatLng(42.38753,-71.2204),
-				new LatLng(Float.parseFloat(entLat),Float.parseFloat(entLng)));*/
+
+		MarkerOptions m = new MarkerOptions()
+		.position(destinations.get(posInList).getEntrance())
+		.title(destinations.get(posInList).getDestination_name())
+		.snippet("enter here")
+		.icon(BitmapDescriptorFactory.fromResource(R.drawable.red_pin));
+		return m;
 	}
 
-	//get directions
-	private void getJSONDirections(LatLng start, LatLng stop){
-		/* === not_good === */
-		if (android.os.Build.VERSION.SDK_INT > 9) {
-			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-			StrictMode.setThreadPolicy(policy);
-		}
-		/* --- /not_good --- */
-		String pair1 = "" + start.latitude + "," + start.longitude;
-		String pair2 = "" + stop.latitude + "," + stop.longitude;
-		String url = "https://maps.googleapis.com/maps/api/directions/json?" +
-				"origin=" + pair1 + 
-				"&destination=" + pair2 +
-				"&sensor=false" +
-				"&mode=walking";
-		//Log.i("cdc",url);
-		try {
-			JSONObject dir = JSONReader.readJsonFromUrl(url);
-			Log.i("cdc", dir.toString());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
+
+
 	public class MyLocationListener implements LocationListener {
 
 		@Override
@@ -280,14 +248,9 @@ public class Find extends Activity implements OnItemSelectedListener {
 			loc.getLatitude();
 			loc.getLongitude();
 
-			/*String Text = "My current location is: " +
-			"Latitude = " + loc.getLatitude() +
-			"Longitude = " + loc.getLongitude();
-
-			Toast.makeText(getApplicationContext(), Text, Toast.LENGTH_SHORT)
-					.show();*/
-			
-			addCurrentMarker(new LatLng(loc.getLatitude(),loc.getLongitude()));
+			//			curr_location.latitude = loc.getLatitude();
+			//			curr_location.longitude = loc.getLongitude();
+			curr_location = new LatLng(loc.getLatitude(),loc.getLongitude());
 		}
 
 		@Override
@@ -299,7 +262,7 @@ public class Find extends Activity implements OnItemSelectedListener {
 		@Override
 		public void onProviderEnabled(String provider) {
 			Toast.makeText(getApplicationContext(),
-			"Gps Enabled", Toast.LENGTH_SHORT).show();
+					"Gps Enabled", Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
@@ -309,5 +272,66 @@ public class Find extends Activity implements OnItemSelectedListener {
 
 	}// End MyLocationListener
 
+	//get directions
+	/**
+	 * FUNC: getDirections
+	 * => places a call to the google maps directions API to retreive a JSON object with directions from a 
+	 * 		start address to an end address 
+	 * @param start LatLng of start
+	 * @param stop LatLng of destination
+	 * @return PolylineOptions to draw the path from start to stop
+	 */
+	private PolylineOptions getPolyline(LatLng start, LatLng stop){
+		//ArrayList<LatLng> points = new ArrayList<LatLng>();
+		/* === not_good === */
+		if (android.os.Build.VERSION.SDK_INT > 9) {
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();	//allow all http traffic
+			StrictMode.setThreadPolicy(policy);
+		}
+		/* --- /not_good --- */
+
+		//build the URL for the API call
+		String pair1 = "" + start.latitude + "," + start.longitude;
+		String pair2 = "" + stop.latitude + "," + stop.longitude;
+		String url = "https://maps.googleapis.com/maps/api/directions/json?" +
+				"origin=" + pair1 + 
+				"&destination=" + pair2 +
+				"&sensor=true" +
+				"&mode=walking";
+		//Log.i("cdc",url);
+		//System.out.println(url);
+		try {
+			JSONObject dir = JSONReader.readJsonFromUrl(url);	//read the JSONObject
+			//Log.i("cdc", dir.toString());
+			//extract each end location {{ routes[0].legs[0].steps[<0...n>].end_location.<lat|lng> }}
+			JSONArray routes = dir.getJSONArray("routes");	//routes
+			//Log.i("cdc-routes", routes.toString());
+			JSONObject myRoute = routes.getJSONObject(0);	//routes[0]
+			//Log.i("cdc-myRoute", myRoute.toString());
+			JSONArray legs = myRoute.getJSONArray("legs");	//routes[0].legs
+			//Log.i("cdc-legs",legs.toString());
+			JSONObject myLeg = legs.getJSONObject(0);		//routes[0].legs[0]
+			//Log.i("cdc-myLeg", myLeg.toString());
+			JSONArray steps = myLeg.getJSONArray("steps");	//routes[0].legs[0].steps
+			//Log.i("cdc-steps", steps.toString());
+			PolylineOptions path = new PolylineOptions() //declare the polyline
+			.color(getResources().getColor(R.color.blue))
+			.width(10);
+			for (int i=0; i<steps.length(); i++){
+				double lat = steps.getJSONObject(i).getJSONObject("end_location").getDouble("lat");		//get lat
+				double lng = steps.getJSONObject(i).getJSONObject("end_location").getDouble("lng");		//get lng
+				Log.i("cdc-point","Lat: " + lat + " Lng: " + lng);
+				path.add(new LatLng(lat,lng));	//add to polyline
+			}
+			return path;		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	} // end getDirections
 
 }

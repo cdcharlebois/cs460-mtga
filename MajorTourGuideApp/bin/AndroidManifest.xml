@@ -19,22 +19,28 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <!-- dev -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyCN2ENjvxI9jxnaV6wxUF7Nk-TUaC1-iPM" /> 
-		<!-- prod 
+            android:value="AIzaSyCN2ENjvxI9jxnaV6wxUF7Nk-TUaC1-iPM" />
+        <!--
+        prod 
 		<meta-data
 		    android:name="com.google.android.maps.v2.API_KEY"
-			android:value="AIzaSyB2m0yz-Lm9XFEXanu21GkrrVpoBgEo1z0" /> --> 
+			android:value="AIzaSyB2m0yz-Lm9XFEXanu21GkrrVpoBgEo1z0" />
+        -->
         <activity
             android:name="com.example.majortourguideapp.WelcomeMenu"
             android:label="@string/title_activity_welcome_menu" >
+
+            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            
         </activity>
         <activity
             android:name="com.example.majortourguideapp.Fork"
@@ -55,6 +61,10 @@
         <activity
             android:name="com.example.majortourguideapp.DBTest"
             android:label="@string/title_activity_dbtest" >
+        </activity>
+        <activity
+            android:name="com.example.majortourguideapp.JSONTest"
+            android:label="Testing" >
         </activity>
     </application>
 
