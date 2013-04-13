@@ -1,0 +1,9 @@
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+      <item android:id="@+id/call"
+              android:title="Call" />
+      <item android:id="@+id/email"
+            android:title="Email" />
+      <item android:id="@+id/web"
+           android:title="Faculty Profile" />
+</menu>

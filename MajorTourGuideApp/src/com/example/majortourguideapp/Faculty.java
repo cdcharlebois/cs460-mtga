@@ -7,12 +7,16 @@
 
 package com.example.majortourguideapp;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.app.Activity;
@@ -22,11 +26,24 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuInflater;
+import android.view.View.OnClickListener;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.webkit.WebView;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
 
 public class Faculty extends ListActivity {
 
+	Activity activity = null;
 	private ArrayList<Faculty_model> faculty = new ArrayList<Faculty_model>();
 	private int major;
 	@Override
@@ -35,6 +52,8 @@ public class Faculty extends ListActivity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.activity_faculty);
 
+		registerForContextMenu(this.getListView());
+		
 		//inflate layout
 
 		//set listeners
@@ -90,6 +109,8 @@ public class Faculty extends ListActivity {
 		setListAdapter(adapter);
 
 	}
+	
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -137,5 +158,41 @@ public class Faculty extends ListActivity {
 		}
 
 	}
+	
+	
+	
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+	      super.onCreateContextMenu(menu, v, menuInfo);
+	      MenuInflater inflater = getMenuInflater();
+	      inflater.inflate(R.menu.context_menu, menu);
+	    }
+	
+	
+	public boolean onContextItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+	     case R.id.call:
+	    	 Intent callIntent = new Intent(Intent.ACTION_CALL);
+	         callIntent.setData(Uri.parse("tel:123456789"));
+	         startActivity(callIntent);
+	            return true;
+	     case R.id.email:
+	    	 Intent intent = new Intent(Intent.ACTION_SEND);
+	    	 intent.setType("text/html");
+	    	 intent.putExtra(Intent.EXTRA_EMAIL, "emailaddress@emailaddress.com");
+	    	 startActivity(Intent.createChooser(intent, "Send Email"));
+	            return true;
+	     case R.id.web:
+	    	 String url = "http://www.google.com";
+			 Intent i = new Intent(Intent.ACTION_VIEW);
+			 i.setData(Uri.parse(url));
+			 startActivity(i);
+	            return true;
+	      default:
+	            return super.onOptionsItemSelected(item);
+	            
+	      }
+	      }
+	 
+
 
 }

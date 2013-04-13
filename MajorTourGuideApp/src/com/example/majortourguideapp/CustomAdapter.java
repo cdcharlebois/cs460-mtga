@@ -31,6 +31,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
+import android.view.View.OnClickListener;
 
 public class CustomAdapter extends BaseAdapter {
 	// store the context (as an inflated layout)
@@ -119,17 +120,8 @@ public class CustomAdapter extends BaseAdapter {
 		tv = (TextView)viewElement;
 		tv.setText(item.getDeptString());
 
-		viewElement = view.findViewById(R.id.email);
-		tv = (TextView)viewElement;
-		tv.setText(item.getEmail());
-
-		viewElement = view.findViewById(R.id.phone);
-		tv = (TextView)viewElement;
-		tv.setText(item.getPhone());
-
-		viewElement = view.findViewById(R.id.profile);
-		tv = (TextView)viewElement;
-		tv.setText(item.getLink());
+		
+	
 
 		viewElement = view.findViewById(R.id.list_image);
 		ImageView iv = (ImageView)viewElement;
