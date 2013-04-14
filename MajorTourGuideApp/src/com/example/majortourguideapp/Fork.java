@@ -41,10 +41,11 @@ public class Fork extends Activity implements OnClickListener {
 
 		//inflate layout
 		btnFind = (Button) findViewById(R.id.btnFind);
-		btnFind.setBackgroundColor(getResources().getColor(R.color.orange));
+		btnFind.setBackgroundColor(getResources().getColor(R.color.bentleyBlue));
 		btnFaculty = (Button) findViewById(R.id.btnFaculty);
+		btnFaculty.setBackgroundColor(getResources().getColor(R.color.bentleyBlue));
 		btnCore = (Button) findViewById(R.id.btnCore);
-		btnCore.setBackgroundColor(getResources().getColor(R.color.orange));
+		btnCore.setBackgroundColor(getResources().getColor(R.color.bentleyBlue));
 		lblMajor = (TextView) findViewById(R.id.lblMajor);
 		
 		
@@ -84,20 +85,21 @@ public class Fork extends Activity implements OnClickListener {
 		Intent i = new Intent();
 		switch (v.getId()){
 		case R.id.btnFind:
-			btnFind.setBackgroundColor(getResources().getColor(R.color.dOrange));
+			//btnFind.setBackgroundColor(getResources().getColor(R.color.dBlue));
 			i.setComponent(new ComponentName("com.example.majortourguideapp",
 	       			"com.example.majortourguideapp.Find"));
 			name="Find";
 			break;
 		case R.id.btnFaculty:
 			//Do some different stuff
+			//btnFaculty.setBackgroundColor(getResources().getColor(R.color.dBlue));
 			i.setComponent(new ComponentName("com.example.majortourguideapp",
 	       			"com.example.majortourguideapp.Faculty"));
 			i.putExtra("major", major);
 			name="Faculty";
 			break;
 		case R.id.btnCore:
-			btnCore.setBackgroundColor(getResources().getColor(R.color.dOrange));
+			//btnCore.setBackgroundColor(getResources().getColor(R.color.dBlue));
 			i.setComponent(new ComponentName("com.example.majortourguideapp",
 	       			"com.example.majortourguideapp.Courses"));
 			i.putExtra("major", major);

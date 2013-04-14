@@ -1,10 +1,14 @@
+/**	====== ================ ======
+ * 	------ WELCOMEMENU.JAVA ------
+ * 	====== ================ ======
+ * 	This is the first screen users see when they open our app.
+ * 	It prompts them to choose an available major, then proceeds to the next section.
+ */
 package com.example.majortourguideapp;
-
-
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -92,6 +96,7 @@ public class WelcomeMenu extends Activity implements OnClickListener {
 			break;
 			}
 	}
+	
 
 
 }
