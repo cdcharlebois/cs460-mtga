@@ -35,19 +35,42 @@
         android:textSize="20dip"
         android:textStyle="bold"/>
  
-    <!-- Artist Name -->
+    <!-- dept -->
     <TextView
         android:id="@+id/office"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
+        android:textColor="@color/blue"
+        android:textSize="15dip"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="" />
+   
+    <!-- phone -->
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/office"
         android:textColor="#343434"
         android:textSize="15dip"
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/thumbnail"
-        android:text="Just gona stand there and ..." />
-   
-    <!-- Rightend Duration -->
+        android:text="" />
+    
+    <!--  email -->
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phone"
+        android:textColor="#343434"
+        android:textSize="15dip"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="" />
+    
   
 
    

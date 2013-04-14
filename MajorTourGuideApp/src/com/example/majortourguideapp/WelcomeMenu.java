@@ -24,13 +24,13 @@ public class WelcomeMenu extends Activity implements OnClickListener {
 		
 		//inflate layout
 		btnCIS = (Button) findViewById(R.id.btnCIS);
-		btnCIS.setBackgroundColor(getResources().getColor(R.color.blue));
+		btnCIS.setBackgroundColor(getResources().getColor(R.color.bentleyBlue));
 		btnFI = (Button) findViewById(R.id.btnFI);
-		btnFI.setBackgroundColor(getResources().getColor(R.color.purple));
+		btnFI.setBackgroundColor(getResources().getColor(R.color.bentleyBlue));
 		btnAC = (Button) findViewById(R.id.btnAC);
-		btnAC.setBackgroundColor(getResources().getColor(R.color.green));
+		btnAC.setBackgroundColor(getResources().getColor(R.color.bentleyBlue));
 		btnMK = (Button) findViewById(R.id.btnMK);
-		btnMK.setBackgroundColor(getResources().getColor(R.color.red));
+		btnMK.setBackgroundColor(getResources().getColor(R.color.bentleyBlue));
 		
 		//set listeners
 		btnCIS.setOnClickListener(this);
@@ -79,15 +79,15 @@ public class WelcomeMenu extends Activity implements OnClickListener {
 			next(1);
 			break;
 		case R.id.btnFI:
-			btnFI.setBackgroundColor(getResources().getColor(R.color.dPurple));
+			btnFI.setBackgroundColor(getResources().getColor(R.color.dBlue));
 			next(3);
 			break;
 		case R.id.btnAC:
-			btnAC.setBackgroundColor(getResources().getColor(R.color.dGreen));
+			btnAC.setBackgroundColor(getResources().getColor(R.color.dBlue));
 			next(2);
 			break;
 		case R.id.btnMK:
-			btnMK.setBackgroundColor(getResources().getColor(R.color.dRed));
+			btnMK.setBackgroundColor(getResources().getColor(R.color.dBlue));
 			next(4);
 			break;
 			}

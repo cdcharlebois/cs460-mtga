@@ -35,6 +35,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,7 +54,7 @@ public class Faculty extends ListActivity {
 		setContentView(R.layout.activity_faculty);
 
 		registerForContextMenu(this.getListView());
-		
+
 		//inflate layout
 
 		//set listeners
@@ -76,8 +77,8 @@ public class Faculty extends ListActivity {
 			String room = c.getString(c.getColumnIndexOrThrow(DB_Contract.Professor.COLUMN_ROOM));
 			String dept_code = c.getString(c.getColumnIndexOrThrow(DB_Contract.Professor.COLUMN_DEPARTMENT));
 			String link = c.getString(c.getColumnIndexOrThrow(DB_Contract.Professor.COLUMN_LINK));
-			String picture_url = c.getString(c.getColumnIndexOrThrow(DB_Contract.Professor.COLUMN_PICTURE));
-			Drawable picture = getImg(picture_url);
+			String picture_path = c.getString(c.getColumnIndexOrThrow(DB_Contract.Professor.COLUMN_PICTURE));
+			Drawable picture = getImg(picture_path);
 			/* -v- replace -v- */
 			//query db
 			String dept_name="";
@@ -109,8 +110,8 @@ public class Faculty extends ListActivity {
 		setListAdapter(adapter);
 
 	}
-	
-	
+
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -141,58 +142,59 @@ public class Faculty extends ListActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	private Drawable getImg(String imageUrl){
-		if (android.os.Build.VERSION.SDK_INT > 9) {
-			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-			StrictMode.setThreadPolicy(policy);
-		}
-		try {
-			Drawable d = Drawable.createFromStream(((InputStream)new URL(imageUrl).openStream()),"test");
-			return d; 
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-			return null;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
+	/**
+	 * FROM: http://stackoverflow.com/questions/9156698/how-to-get-images-dynamiclly-from-drawable-folder
+	 * @param path -> the filename in res/drawable
+	 * @return the drawable object
+	 */
+	private Drawable getImg(String path){
+		Drawable d = getResources().getDrawable(getResources().getIdentifier(path.toLowerCase(), "drawable", getPackageName()));
+		return d;
 
 	}
-	
-	
-	
+
+
+
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-	      super.onCreateContextMenu(menu, v, menuInfo);
-	      MenuInflater inflater = getMenuInflater();
-	      inflater.inflate(R.menu.context_menu, menu);
-	    }
-	
-	
+		super.onCreateContextMenu(menu, v, menuInfo);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.context_menu, menu);
+	}
+
+
 	public boolean onContextItemSelected(MenuItem item) {
+		/* --- from: http://stackoverflow.com/questions/2453620/android-how-to-find-the-position-clicked-from-the-context-menu --- */
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();
+		int index = info.position;
+		/* --- /from --- */
+		//Log.i("cdc","position: "+index+", fac name = "+faculty.get(index).getName());
+		Faculty_model fm = faculty.get(index);
 		switch (item.getItemId()) {
-	     case R.id.call:
-	    	 Intent callIntent = new Intent(Intent.ACTION_CALL);
-	         callIntent.setData(Uri.parse("tel:123456789"));
-	         startActivity(callIntent);
-	            return true;
-	     case R.id.email:
-	    	 Intent intent = new Intent(Intent.ACTION_SEND);
-	    	 intent.setType("text/html");
-	    	 intent.putExtra(Intent.EXTRA_EMAIL, "emailaddress@emailaddress.com");
-	    	 startActivity(Intent.createChooser(intent, "Send Email"));
-	            return true;
-	     case R.id.web:
-	    	 String url = "http://www.google.com";
-			 Intent i = new Intent(Intent.ACTION_VIEW);
-			 i.setData(Uri.parse(url));
-			 startActivity(i);
-	            return true;
-	      default:
-	            return super.onOptionsItemSelected(item);
-	            
-	      }
-	      }
-	 
+		case R.id.call:
+			Intent callIntent = new Intent(Intent.ACTION_CALL);
+			callIntent.setData(Uri.parse("tel:"+fm.getPhone()));
+			startActivity(callIntent);
+			return true;
+		case R.id.email:
+			/* --- from:http://stackoverflow.com/questions/8292503/sending-email-on-android-via-default-email-application --- */
+			Uri uri = Uri.parse("mailto:"+fm.getEmail());
+			Intent mail = new Intent(Intent.ACTION_SENDTO, uri);
+			mail.putExtra(Intent.EXTRA_SUBJECT, "Enter a subject");
+			startActivity(mail);
+			/* --- /from --*/
+			return true;
+		case R.id.web:
+			String url = fm.getLink();
+			Intent i = new Intent(Intent.ACTION_VIEW);
+			i.setData(Uri.parse(url));
+			startActivity(i);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+
+		}
+	}
+
 
 
 }

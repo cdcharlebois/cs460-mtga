@@ -115,43 +115,29 @@ public class CustomAdapter extends BaseAdapter {
 		// set the value
 		tv.setText(item.getName());
 
-
+		//dept
 		viewElement = view.findViewById(R.id.office);
 		tv = (TextView)viewElement;
 		tv.setText(item.getDeptString());
 
-		
-	
-
+		//image
 		viewElement = view.findViewById(R.id.list_image);
 		ImageView iv = (ImageView)viewElement;
 		iv.setImageDrawable(item.getPicture_draw());
+		
+		//phone
+		viewElement = view.findViewById(R.id.phone);
+		tv = (TextView)viewElement;
+		tv.setText("Phone: "+item.getPhone());
+		
+		//email
+		viewElement = view.findViewById(R.id.email);
+		tv = (TextView)viewElement;
+		tv.setText("Email: "+item.getEmail());
 
 
 		// return the final view object
 		return view;
-
-	}
-	
-	/* ======================================================================================+
-	 * This is a terrible way to do this. This image loading needs to happen in a new thread |
-	 * --------------------------------------------------------------------------------------+
-	 */
-	private Drawable getImg(String imageUrl){
-		if (android.os.Build.VERSION.SDK_INT > 9) {
-		      StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-		      StrictMode.setThreadPolicy(policy);
-		}
-		try {
-			Drawable d = Drawable.createFromStream(((InputStream)new URL(imageUrl).openStream()),"test");
-			return d; 
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-			return null;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
 
 	}
 
