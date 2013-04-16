@@ -15,5 +15,6 @@
     <color name="dRed">#CC0000</color>
     <color name="def">#111</color>
     <color name="bentleyBlue">#00A3F9</color>
+    <color name="black_overlay">#66000000</color>
 
 </resources>

@@ -9,6 +9,14 @@ package com.example.majortourguideapp;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int buttonBarButtonStyle=0x7f01000f;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int buttonBarStyle=0x7f01000e;
         /** <p>Must be a floating point value, such as "<code>1.2</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -131,6 +139,7 @@ containing a value of this type.
     public static final class color {
         public static final int AndroidPurple=0x7f060000;
         public static final int bentleyBlue=0x7f06000d;
+        public static final int black_overlay=0x7f06000e;
         public static final int blue=0x7f060002;
         public static final int dBlue=0x7f060003;
         public static final int dGreen=0x7f060007;
@@ -216,41 +225,92 @@ containing a value of this type.
         public static final int p0048=0x7f02003a;
         public static final int p0049=0x7f02003b;
         public static final int p0050=0x7f02003c;
-        public static final int red_pin=0x7f02003d;
-        public static final int wong=0x7f02003e;
+        public static final int p0051=0x7f02003d;
+        public static final int p0052=0x7f02003e;
+        public static final int p0053=0x7f02003f;
+        public static final int p0054=0x7f020040;
+        public static final int p0055=0x7f020041;
+        public static final int p0056=0x7f020042;
+        public static final int p0057=0x7f020043;
+        public static final int p0058=0x7f020044;
+        public static final int p0059=0x7f020045;
+        public static final int p0060=0x7f020046;
+        public static final int p0061=0x7f020047;
+        public static final int p0062=0x7f020048;
+        public static final int p0063=0x7f020049;
+        public static final int p0064=0x7f02004a;
+        public static final int p0065=0x7f02004b;
+        public static final int p0066=0x7f02004c;
+        public static final int p0067=0x7f02004d;
+        public static final int p0068=0x7f02004e;
+        public static final int p0069=0x7f02004f;
+        public static final int p0070=0x7f020050;
+        public static final int p0071=0x7f020051;
+        public static final int p0072=0x7f020052;
+        public static final int p0073=0x7f020053;
+        public static final int p0074=0x7f020054;
+        public static final int p0075=0x7f020055;
+        public static final int p0076=0x7f020056;
+        public static final int p0077=0x7f020057;
+        public static final int p0078=0x7f020058;
+        public static final int p0079=0x7f020059;
+        public static final int p0080=0x7f02005a;
+        public static final int p0081=0x7f02005b;
+        public static final int p0082=0x7f02005c;
+        public static final int p0083=0x7f02005d;
+        public static final int p0084=0x7f02005e;
+        public static final int p0085=0x7f02005f;
+        public static final int p0086=0x7f020060;
+        public static final int p0087=0x7f020061;
+        public static final int p0088=0x7f020062;
+        public static final int p0089=0x7f020063;
+        public static final int p0090=0x7f020064;
+        public static final int p0091=0x7f020065;
+        public static final int p0092=0x7f020066;
+        public static final int p0093=0x7f020067;
+        public static final int p0094=0x7f020068;
+        public static final int p0095=0x7f020069;
+        public static final int p0096=0x7f02006a;
+        public static final int red_pin=0x7f02006b;
+        public static final int wong=0x7f02006c;
     }
     public static final class id {
-        public static final int action_settings=0x7f04001e;
-        public static final int btnAC=0x7f040011;
-        public static final int btnCIS=0x7f040010;
+        public static final int action_settings=0x7f040023;
+        public static final int btnAC=0x7f040016;
+        public static final int btnCIS=0x7f040015;
+        public static final int btnContinue=0x7f040010;
         public static final int btnCore=0x7f04000c;
-        public static final int btnFI=0x7f040013;
+        public static final int btnFI=0x7f040018;
         public static final int btnFaculty=0x7f04000b;
         public static final int btnFind=0x7f04000a;
-        public static final int btnMK=0x7f040014;
-        public static final int call=0x7f04001c;
-        public static final int email=0x7f04001a;
+        public static final int btnGPS=0x7f04000f;
+        public static final int btnInfo=0x7f04000e;
+        public static final int btnMK=0x7f040019;
+        public static final int call=0x7f040021;
+        public static final int email=0x7f04001f;
+        public static final int fullscreen_content=0x7f040011;
         public static final int hybrid=0x7f040004;
-        public static final int lblChoice=0x7f04000e;
+        public static final int lblChoice=0x7f040013;
         public static final int lblMajor=0x7f040009;
-        public static final int list_image=0x7f040016;
+        public static final int list_image=0x7f04001b;
         public static final int llButtonWrapper=0x7f040008;
-        public static final int llButtonWrapper1=0x7f04000f;
-        public static final int llButtonWrapper2=0x7f040012;
+        public static final int llButtonWrapper1=0x7f040014;
+        public static final int llButtonWrapper2=0x7f040017;
         public static final int map=0x7f040007;
         public static final int map_blurb=0x7f040006;
-        public static final int menu_settings=0x7f04001b;
+        public static final int menu_settings=0x7f040020;
         public static final int none=0x7f040000;
         public static final int normal=0x7f040001;
-        public static final int office=0x7f040018;
-        public static final int phone=0x7f040019;
-        public static final int picLogo=0x7f04000d;
+        public static final int office=0x7f04001d;
+        public static final int phone=0x7f04001e;
+        public static final int picLogo=0x7f040012;
         public static final int satellite=0x7f040002;
         public static final int spinner1=0x7f040005;
+        public static final int splashBtnWrapper=0x7f04000d;
         public static final int terrain=0x7f040003;
-        public static final int thumbnail=0x7f040015;
-        public static final int title=0x7f040017;
-        public static final int web=0x7f04001d;
+        public static final int thumbnail=0x7f04001a;
+        public static final int title=0x7f04001c;
+        public static final int web=0x7f040022;
     }
     public static final class layout {
         public static final int activity_courses=0x7f030000;
@@ -258,9 +318,10 @@ containing a value of this type.
         public static final int activity_faculty=0x7f030002;
         public static final int activity_find=0x7f030003;
         public static final int activity_fork=0x7f030004;
-        public static final int activity_welcome_menu=0x7f030005;
-        public static final int list_item=0x7f030006;
-        public static final int map_frag=0x7f030007;
+        public static final int activity_splash_screen=0x7f030005;
+        public static final int activity_welcome_menu=0x7f030006;
+        public static final int list_item=0x7f030007;
+        public static final int map_frag=0x7f030008;
     }
     public static final class menu {
         public static final int activity_courses=0x7f090000;
@@ -337,6 +398,8 @@ containing a value of this type.
         find the service-side assets. [CHAR LIMIT=25] 
          */
         public static final int common_signin_button_text_long=0x7f05000d;
+        public static final int dummy_button=0x7f05001d;
+        public static final int dummy_content=0x7f05001e;
         public static final int hello_world=0x7f050012;
         public static final int menu_settings=0x7f050013;
         public static final int title_activity_courses=0x7f050018;
@@ -344,21 +407,25 @@ containing a value of this type.
         public static final int title_activity_faculty=0x7f050017;
         public static final int title_activity_find=0x7f050016;
         public static final int title_activity_fork=0x7f050015;
+        public static final int title_activity_splash_screen=0x7f05001c;
         public static final int title_activity_welcome_menu=0x7f050014;
     }
     public static final class style {
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
         
 
         Base application theme for API 11+. This theme completely replaces
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
+
     
  API 11 theme customizations can go here. 
 
@@ -373,8 +440,52 @@ containing a value of this type.
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f080001;
+        public static final int ButtonBar=0x7f080003;
+        public static final int ButtonBarButton=0x7f080004;
+        public static final int FullscreenActionBarStyle=0x7f080005;
+        public static final int FullscreenTheme=0x7f080002;
     }
     public static final class styleable {
+        /** 
+         Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels.
+    
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ButtonBarContainerTheme_buttonBarButtonStyle com.example.majortourguideapp:buttonBarButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ButtonBarContainerTheme_buttonBarStyle com.example.majortourguideapp:buttonBarStyle}</code></td><td></td></tr>
+           </table>
+           @see #ButtonBarContainerTheme_buttonBarButtonStyle
+           @see #ButtonBarContainerTheme_buttonBarStyle
+         */
+        public static final int[] ButtonBarContainerTheme = {
+            0x7f01000e, 0x7f01000f
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.example.majortourguideapp.R.attr#buttonBarButtonStyle}
+          attribute's value can be found in the {@link #ButtonBarContainerTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:buttonBarButtonStyle
+        */
+        public static final int ButtonBarContainerTheme_buttonBarButtonStyle = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.example.majortourguideapp.R.attr#buttonBarStyle}
+          attribute's value can be found in the {@link #ButtonBarContainerTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:buttonBarStyle
+        */
+        public static final int ButtonBarContainerTheme_buttonBarStyle = 0;
         /** Attributes that can be used with a MapAttrs.
            <p>Includes the following attributes:</p>
            <table>

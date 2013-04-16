@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context=".SplashScreen" >
+
+    <!--
+         The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc.
+    -->
+     <LinearLayout 
+        android:id="@+id/splashBtnWrapper"
+        android:layout_height="54dp"
+        android:layout_width="fill_parent"
+        android:layout_alignParentBottom="true">
+        
+         <Button 
+             android:id="@+id/btnInfo"
+             android:layout_weight="1"
+             android:layout_height="fill_parent"
+             android:layout_width="0dp"
+             android:text="Info"/>
+         <Button
+             android:id="@+id/btnGPS" 
+             android:layout_weight="1"
+             android:layout_height="fill_parent"
+             android:layout_width="0dp"
+             android:text="Enable GPS"/>
+         <Button 
+             android:id="@+id/btnContinue"
+             android:layout_weight="1"
+             android:layout_height="fill_parent"
+             android:layout_width="0dp"
+             android:text="Continue"/>
+        
+    </LinearLayout>
+	<!-- about us -->
+    <TextView
+        android:id="@+id/fullscreen_content"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:keepScreenOn="true"
+        android:text="Put welcome stuff here"
+        android:textColor="#33b5e5"
+        android:textSize="50sp"
+        android:textStyle="bold" 
+        android:layout_above="@id/splashBtnWrapper"/>
+
+   
+</RelativeLayout>

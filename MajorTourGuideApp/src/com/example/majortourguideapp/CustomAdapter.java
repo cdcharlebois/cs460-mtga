@@ -124,6 +124,7 @@ public class CustomAdapter extends BaseAdapter {
 		viewElement = view.findViewById(R.id.list_image);
 		ImageView iv = (ImageView)viewElement;
 		iv.setImageDrawable(item.getPicture_draw());
+		//Log.e("img", "found: "+item.getName());
 		
 		//phone
 		viewElement = view.findViewById(R.id.phone);

@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -77,6 +78,14 @@ public class WelcomeMenu extends Activity implements OnClickListener {
 	public void onClick(View v) {
 //		String name = "";
 //		Intent i = new Intent();
+		
+		//check to see if view is a button
+		if(v instanceof Button){
+			Log.i("cdc", "this is a button. It says " + ((Button)v).getText());
+			//do some color stuff
+			
+		}
+		
 		switch (v.getId()){
 		case R.id.btnCIS:
 			btnCIS.setBackgroundColor(getResources().getColor(R.color.dBlue));
