@@ -2,94 +2,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dBlue"
     tools:context=".Fork" >
-
-    <ImageView
-        android:id="@+id/picLogo"
-        android:layout_width="160dip"
-        android:layout_height="160dip"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp"
-        android:src="@drawable/main_logo" />
-
+    
     <TextView
-        android:id="@+id/lblChoice"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/picLogo"
-        android:layout_marginBottom="12dp"
-        android:gravity="center"
-        android:height="60dp"
-        android:text="Please Choose A Major:" />
+       android:id="@+id/lblChoice"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginBottom="12dp"
+       android:height="60dp"
+       android:text="Please Choose A Major:"
+       android:gravity="center"/>
+    
+    <LinearLayout
+       android:id="@+id/llButtonWrapper1"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:gravity="center" 
+       android:orientation="horizontal"
+       android:layout_below="@+id/lblChoice" >
+       
+       <Button
+           android:id="@+id/btnCIS"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:height="150dp"
+           android:text="CIS"
+           android:width="80dip"
+           android:layout_weight="1" 
+           android:background="@color/blue"
+           android:textColor="@color/white"
+           android:layout_margin="3dip"/>
+       
+       <Button
+           android:id="@+id/btnAC"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:height="150dp"
+           android:text="AC"
+           android:width="80dip"
+           android:layout_weight="1" 
+           android:background="@color/green"
+           android:textColor="@color/white"
+           android:layout_margin="3dip"/>
+       </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/llButtonWrapper1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lblChoice"
-        android:gravity="center"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/btnCIS"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dip"
-            android:layout_weight="1"
-            android:background="@color/bentleyBlue"
-            android:height="80dp"
-            android:text="CIS"
-            android:textColor="@color/white"
-            android:width="80dip" 
-            android:textSize="40dp"/>
-
-        <Button
-            android:id="@+id/btnAC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dip"
-            android:layout_weight="1"
-            android:background="@color/bentleyBlue"
-            android:height="80dp"
-            android:text="AC"
-            android:textColor="@color/white"
-            android:width="80dip" 
-            android:textSize="40dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llButtonWrapper2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/llButtonWrapper1"
-        android:gravity="center"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/btnFI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dip"
-            android:layout_weight="1"
-            android:background="@color/bentleyBlue"
-            android:height="80dp"
-            android:text="FI"
-            android:textColor="@color/white"
-            android:width="80dip" 
-            android:textSize="40dp"/>
-
-        <Button
-            android:id="@+id/btnMK"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dip"
-            android:layout_weight="1"
-            android:background="@color/bentleyBlue"
-            android:height="80dp"
-            android:text="MK"
-            android:textColor="@color/white"
-            android:width="80dip" 
-            android:textSize="40dp"/>
-    </LinearLayout>
+       android:id="@+id/llButtonWrapper2"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:gravity="center" 
+       android:orientation="horizontal"
+       android:layout_below="@+id/llButtonWrapper1">
+   
+       <Button
+           android:id="@+id/btnFI"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:height="150dp"
+           android:text="FI"
+           android:width="80dip"
+           android:layout_weight="1" 
+           android:background="@color/purple"
+           android:textColor="@color/white"
+           android:layout_margin="3dip"/>
+       
+       <Button
+           android:id="@+id/btnMK"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:height="150dp"
+           android:text="MK"
+           android:width="80dip"
+           android:layout_weight="1" 
+           android:background="@color/red"
+           android:textColor="@color/white"
+           android:layout_margin="3dip"/>
+   </LinearLayout>
 
 </RelativeLayout>

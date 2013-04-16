@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dBlue""
     tools:context=".Fork" >
     
    
@@ -26,9 +27,9 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:height="48dp"
-           android:text="Where..."
+           android:text="Find..."
            android:width="200dip" 
-           android:background="@color/bentleyBlue"
+           android:background="@color/orange"
            android:textColor="@color/white"
            android:layout_margin="3dip"/>
 
@@ -37,9 +38,9 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:height="48dp"
-           android:text="Who..."
+           android:text="Faculty..."
            android:width="200dip" 
-           android:background="@color/bentleyBlue"
+           android:background="@color/blue"
            android:textColor="@color/white"
            android:layout_margin="3dip"/>
 
@@ -48,9 +49,9 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:height="48dp"
-           android:text="What..."
+           android:text="Core..."
            android:width="200dip" 
-           android:background="@color/bentleyBlue"
+           android:background="@color/orange"
            android:textColor="@color/white"
            android:layout_margin="3dip"/>
        
