@@ -317,13 +317,21 @@ public class Find extends Activity implements OnItemSelectedListener {
 			PolylineOptions path = new PolylineOptions() //declare the polyline
 			.color(getResources().getColor(R.color.blue))
 			.width(10);
+			//add starting LatLng to beginning
+			path.add(start);
 			for (int i=0; i<steps.length(); i++){
 				double lat = steps.getJSONObject(i).getJSONObject("end_location").getDouble("lat");		//get lat
 				double lng = steps.getJSONObject(i).getJSONObject("end_location").getDouble("lng");		//get lng
 				Log.i("cdc-point","Lat: " + lat + " Lng: " + lng);
 				path.add(new LatLng(lat,lng));	//add to polyline
 			}
-			return path;		
+			
+			
+			//add the destination to the end
+			path.add(stop);
+			return path;	
+			
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -331,6 +339,7 @@ public class Find extends Activity implements OnItemSelectedListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return null;
 	} // end getDirections
 
