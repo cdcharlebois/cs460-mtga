@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 <<<<<<< HEAD
+<<<<<<< HEAD
     android:background="@color/dBlue"
+=======
+>>>>>>> bcf31507b97258da3f9f292dbdc098bffbcbe6d7
 =======
 >>>>>>> bcf31507b97258da3f9f292dbdc098bffbcbe6d7
     tools:context=".Fork" >
