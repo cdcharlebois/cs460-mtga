@@ -17,7 +17,8 @@
  * @author CS480/460 Team A
  * 	=== MODIFICATIONS ===
  * 	04/04/2013 -> added code to match snippet to destination
- * 	04/12/2013 -> added polyline support, organized code to be more modular 
+ * 	04/12/2013 -> added polyline support, organized code to be more modular
+ * 	04/16/2013 -> added functionality to connect first pin to line, and last pin to line 
  * 
  */
 
@@ -81,6 +82,8 @@ public class Find extends Activity implements OnItemSelectedListener {
 	private TextView blurb;
 	private int sel;	//currently selected item from the spinner
 	private LatLng curr_location;	//user's location
+	
+	
 
 
 	@Override
@@ -88,7 +91,6 @@ public class Find extends Activity implements OnItemSelectedListener {
 		super.onCreate(savedInstanceState);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.activity_find);
-
 
 		/* just a test of navigation
 		String locationUrl = "google.navigation:q=42.38753,-71.2204";
