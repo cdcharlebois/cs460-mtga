@@ -398,6 +398,7 @@ containing a value of this type.
         find the service-side assets. [CHAR LIMIT=25] 
          */
         public static final int common_signin_button_text_long=0x7f05000d;
+        public static final int dest_prompt=0x7f05001f;
         public static final int dummy_button=0x7f05001d;
         public static final int dummy_content=0x7f05001e;
         public static final int hello_world=0x7f050012;

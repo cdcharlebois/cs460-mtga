@@ -146,6 +146,7 @@ public class Find extends Activity implements OnItemSelectedListener {
 		aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(aa);
 		spinner.setOnItemSelectedListener(this);
+		//spinner.setPrompt("Pick...");
 	}
 
 	/* (non-Javadoc)
