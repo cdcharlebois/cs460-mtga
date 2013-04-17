@@ -41,11 +41,11 @@ public class Fork extends Activity implements OnClickListener {
 
 		//inflate layout
 		btnFind = (Button) findViewById(R.id.btnFind);
-		btnFind.setBackgroundColor(getResources().getColor(R.color.bentleyBlue));
+		
 		btnFaculty = (Button) findViewById(R.id.btnFaculty);
-		btnFaculty.setBackgroundColor(getResources().getColor(R.color.bentleyBlue));
+		
 		btnCore = (Button) findViewById(R.id.btnCore);
-		btnCore.setBackgroundColor(getResources().getColor(R.color.bentleyBlue));
+		
 		lblMajor = (TextView) findViewById(R.id.lblMajor);
 		
 		

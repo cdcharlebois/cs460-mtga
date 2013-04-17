@@ -36,12 +36,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="3dip"
             android:layout_weight="1"
-            android:background="@color/bentleyBlue"
+            android:background="@drawable/new_button"
             android:height="80dp"
             android:text="CIS"
-            android:textColor="@color/white"
-            android:width="80dip" 
-            android:textSize="40dp"/>
+            android:textColor="@drawable/button_text"
+            android:textSize="40dp"
+            android:width="80dip" />
 
         <Button
             android:id="@+id/btnAC"
@@ -49,12 +49,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="3dip"
             android:layout_weight="1"
-            android:background="@color/bentleyBlue"
+            android:background="@drawable/new_button"
             android:height="80dp"
             android:text="AC"
-            android:textColor="@color/white"
-            android:width="80dip" 
-            android:textSize="40dp"/>
+            android:textColor="@drawable/button_text"
+            android:textSize="40dp"
+            android:width="80dip" />
     </LinearLayout>
 
     <LinearLayout
@@ -71,12 +71,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="3dip"
             android:layout_weight="1"
-            android:background="@color/bentleyBlue"
+            android:background="@drawable/new_button"
             android:height="80dp"
             android:text="FI"
-            android:textColor="@color/white"
-            android:width="80dip" 
-            android:textSize="40dp"/>
+            android:textColor="@drawable/button_text"
+            android:textSize="40dp"
+            android:width="80dip" />
 
         <Button
             android:id="@+id/btnMK"
@@ -84,12 +84,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="3dip"
             android:layout_weight="1"
-            android:background="@color/bentleyBlue"
+            android:background="@drawable/new_button"
             android:height="80dp"
             android:text="MK"
-            android:textColor="@color/white"
-            android:width="80dip" 
-            android:textSize="40dp"/>
+            android:textColor="@drawable/button_text"
+            android:textSize="40dp"
+            android:width="80dip" />
     </LinearLayout>
 
 </RelativeLayout>

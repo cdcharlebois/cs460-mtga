@@ -3,57 +3,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fork" >
-    
-   
 
-   <LinearLayout
-       android:id="@+id/llButtonWrapper"
-       android:layout_width="fill_parent"
-       android:layout_height="fill_parent"
-       android:gravity="center" 
-       android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/llButtonWrapper"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
 
-       <TextView
-           android:id="@+id/lblMajor"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginBottom="12dp"
-           android:height="48dp"
-           android:text="@string/Major" />
-       
-       <Button
-           android:id="@+id/btnFind"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:height="48dp"
-           android:text="Where..."
-           android:width="200dip" 
-           android:background="@color/bentleyBlue"
-           android:textColor="@color/white"
-           android:layout_margin="3dip"/>
+        <TextView
+            android:id="@+id/lblMajor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:height="48dp"
+            android:text="@string/Major" />
 
-       <Button
-           android:id="@+id/btnFaculty"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:height="48dp"
-           android:text="Who..."
-           android:width="200dip" 
-           android:background="@color/bentleyBlue"
-           android:textColor="@color/white"
-           android:layout_margin="3dip"/>
+        <Button
+            android:id="@+id/btnFind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dip"
+            android:background="@drawable/new_button"
+            android:height="48dp"
+            android:text="Where..."
+            android:textColor="@drawable/button_text"
+            android:width="200dip" />
 
-       <Button
-           android:id="@+id/btnCore"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:height="48dp"
-           android:text="What..."
-           android:width="200dip" 
-           android:background="@color/bentleyBlue"
-           android:textColor="@color/white"
-           android:layout_margin="3dip"/>
-       
-   </LinearLayout>
+        <Button
+            android:id="@+id/btnFaculty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dip"
+            android:background="@drawable/new_button"
+            android:height="48dp"
+            android:text="Who..."
+            android:textColor="@drawable/button_text"
+            android:width="200dip" />
+
+        <Button
+            android:id="@+id/btnCore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dip"
+            android:background="@drawable/new_button"
+            android:height="48dp"
+            android:text="What..."
+            android:textColor="@drawable/button_text"
+            android:width="200dip" />
+    </LinearLayout>
 
 </RelativeLayout>

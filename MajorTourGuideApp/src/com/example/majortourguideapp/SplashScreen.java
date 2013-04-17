@@ -13,11 +13,13 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Button;
+import android.widget.Toast;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,12 +33,12 @@ public class SplashScreen extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash_screen);
-		
+
 		//inflate
-		
+
 		btnContinue = (Button)findViewById(R.id.btnContinue);
 		btnInfo = (Button)findViewById(R.id.btnInfo);
-		
+
 		//set listeners
 		btnContinue.setOnClickListener(this);
 		btnInfo.setOnClickListener(this);
@@ -45,52 +47,46 @@ public class SplashScreen extends Activity implements OnClickListener {
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	@Override
 	public void onClick(View v) {
-		/* --- cdc attempt at faking animation --- */
-		v.setBackground(getResources().getDrawable(R.drawable.button_pressed));
-		/*for(int i=0; i<100000; i++){
-			float nothing = 3.145f / (float)Math.random()+1;	//100k flops -- just to kill time
-			Log.i("cdc", "hello "+i);
-		}*/
-		v.setBackground(getResources().getDrawable(R.drawable.button));
-		/* --- /attempt -- */
 		switch(v.getId()){
 		case R.id.btnContinue:
-			
-			
-			//if GPS is not enabled, prompt to enable
-			
-			// --- /prompt ---
-			goToNext();
+			if(!GPSIsEnabled()){	//if gps isn't enabled
+				enableGPS();		//prompt to enable
+			}
+			goToNext();				//attemp to start
 			break;
 		case R.id.btnInfo:
 			//do some stuff
 			//show about us screen (new activity or change the content of this one)
 			break;
 		}
-		
+
 	}
-	
+
 	private void goToNext(){
 		Intent i = new Intent();
-       	i.setComponent(new ComponentName("com.example.majortourguideapp",
-       			"com.example.majortourguideapp.WelcomeMenu"));
-      	startActivity(i);
+		i.setComponent(new ComponentName("com.example.majortourguideapp",
+				"com.example.majortourguideapp.WelcomeMenu"));
+		if (GPSIsEnabled()){
+			startActivity(i);
+		}
 	}
-	
-	/**
-	 * from: http://stackoverflow.com/questions/4721449/enable-gps-programatically-like-tasker
-	 */
-	private void turnGPSOn(){
-	    String provider = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
 
-	    if(!provider.contains("gps")){ //if gps is disabled
-	        final Intent poke = new Intent();
-	        poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider"); 
-	        poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
-	        poke.setData(Uri.parse("3")); 
-	        sendBroadcast(poke);
-	    }
+	/**
+	 * from: http://mgmblog.com/2009/11/03/is-gps-on-if-not-allow-user-to-turn-it-on/
+	 */
+	private boolean GPSIsEnabled(){
+		LocationManager alm = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE );
+		if(alm.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER )){
+			//Toast.makeText( this, "GPS is already on", Toast.LENGTH_SHORT ).show();
+			return true;
+		}
+		return false;
 	}
-	
-	
+	private void enableGPS(){
+		Toast.makeText( this, "Please enable GPS, then touch back to return.", Toast.LENGTH_SHORT ).show();
+		Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS );
+		startActivity(myIntent);
+	}
+
+
 }
