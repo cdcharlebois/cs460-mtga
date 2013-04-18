@@ -2,14 +2,13 @@
 <classpath>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/Android/android-sdk/extras/android/support/v4/android-support-v4.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Program Files (x86)/Android/android-sdk/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-services.jar">
+	<classpathentry kind="lib" path="C:/Users/DEXTRAD_ROBE/AppData/Local/Android/android-sdk/extras/android/support/v4/android-support-v4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/DEXTRAD_ROBE/AppData/Local/Android/android-sdk/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-services.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="file:/C:/Program%20Files%20(x86)/Android/android-sdk/extras/google/google_play_services/libproject/google-play-services_lib/libs/../../../docs/reference/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/CHARLEB_CONN/Dropbox/Bentley/Ju_2/CS480/Code/cs460-mtga/assets/google-gson-2.2.2/gson-2.2.2.jar"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
