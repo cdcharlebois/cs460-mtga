@@ -4,14 +4,18 @@
  * 
  * 	=== MODIFICATIONS ===
  * 	04/17/2013 -> added logo to layout, added new buttons, attempted to animate
+ * 	04/17/2013 -> added succesful animations, about us dialog
+ * 
  */
 
 package com.example.majortourguideapp;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -20,6 +24,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Button;
 import android.widget.Toast;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -57,6 +62,22 @@ public class SplashScreen extends Activity implements OnClickListener {
 		case R.id.btnInfo:
 			//do some stuff
 			//show about us screen (new activity or change the content of this one)
+			new AlertDialog.Builder(this)
+			   .setTitle("About this App")
+			   .setMessage(Html.fromHtml("<b>Bentley T</b><br>" +
+			   		"<b>The Team</b><br>Conner Charlebois<br>Anthony Wu<br>David Vaudo<br>Kelsie Oltman<br>Kristen Manning<br>Curtis Trueb<br>Rob Dextradeur<br>" +
+			   		"<br>" +
+			   		"<b>The App</b><br>" +
+			   		"Do some stuff..."))
+			   .setPositiveButton("Okay, got it!", new DialogInterface.OnClickListener(){
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					dialog.dismiss();
+				}
+			   })
+			   .create()
+			   .show();
 			break;
 		}
 

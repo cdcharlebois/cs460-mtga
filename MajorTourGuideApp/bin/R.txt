@@ -198,6 +198,7 @@ int menu activity_welcome_menu 0x7f090004
 int menu context_menu 0x7f090005
 int menu dbtest 0x7f090006
 int string Major 0x7f050019
+int string aboutUs 0x7f050020
 int string action_settings 0x7f05001b
 int string app_name 0x7f050011
 int string auth_client_availability_notification_title 0x7f05000e

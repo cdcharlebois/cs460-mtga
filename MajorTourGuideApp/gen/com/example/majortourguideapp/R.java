@@ -339,6 +339,7 @@ containing a value of this type.
     }
     public static final class string {
         public static final int Major=0x7f050019;
+        public static final int aboutUs=0x7f050020;
         public static final int action_settings=0x7f05001b;
         public static final int app_name=0x7f050011;
         /**   Title for notification shown when GooglePlayServices is unavailable [CHAR LIMIT=70] 
