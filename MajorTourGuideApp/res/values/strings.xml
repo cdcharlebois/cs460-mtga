@@ -16,6 +16,6 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="dest_prompt">Please choose a destination</string>
-    <string name="aboutUs">Test About Us Content</string>
+    <string name="aboutUs">Test About Us   Content</string>
 
 </resources>
