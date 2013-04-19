@@ -161,6 +161,9 @@ public class Faculty extends ListActivity {
 		inflater.inflate(R.menu.context_menu, menu);
 	}
 
+	public void onListItemClick(ListView l, View v, int position, long id){
+		  l.showContextMenuForChild(v);   
+		}
 
 	public boolean onContextItemSelected(MenuItem item) {
 		/* --- from: http://stackoverflow.com/questions/2453620/android-how-to-find-the-position-clicked-from-the-context-menu --- */
