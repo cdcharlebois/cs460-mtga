@@ -1,0 +1,26 @@
++===================================+
+| MajorTourGuideApp Important Stuff |
++===================================+
+
+====== ====== ======
+------ Conner ------
+====== ====== ======
+/* ----------
+	JAR PATHS
+	---------- */
+	support:
+		C:\Program Files (x86)\Android\android-sdk\extras\android\support\v4\android-support-v4.jar
+	google play services:
+		C:\Program Files (x86)\Android\android-sdk\extras\google\google_play_services\libproject\google-play-services_lib\libs\google-play-services.jar
+
+/* ----------
+	API KEYS
+	---------- */
+	dev:
+		AIzaSyCN2ENjvxI9jxnaV6wxUF7Nk-TUaC1-iPM
+	prod:
+		AIzaSyB2m0yz-Lm9XFEXanu21GkrrVpoBgEo1z0
+
+====== ======= ======
+------ /Conner ------
+====== ======= ======
