@@ -75,7 +75,7 @@ public class Find extends Activity implements OnItemSelectedListener {
 	private Spinner spinner;
 	int major;
 	private ImageView img;
-	private ArrayList<destination_model> destinations = new ArrayList<destination_model>();
+	private ArrayList<Destination_model> destinations = new ArrayList<Destination_model>();
 	private ArrayAdapter<String> aa;
 	private GoogleMap map;
 	private LatLng position = new LatLng(42.38781,-71.22008);
@@ -133,13 +133,13 @@ public class Find extends Activity implements OnItemSelectedListener {
 			String destName = c.getString(c.getColumnIndexOrThrow(DB_Contract.Destination.COLUMN_NAME));
 			String destId = c.getString(c.getColumnIndexOrThrow(DB_Contract.Destination.COLUMN_LOCATION));
 			String destBlurb = c.getString(c.getColumnIndexOrThrow(DB_Contract.Destination.COLUMN_BLURB));
-			destinations.add(new destination_model(destName,destId,destBlurb,this));
+			destinations.add(new Destination_model(destName,destId,destBlurb,this));
 			c.moveToNext();
 		}while(!c.isAfterLast());
 		db.close();
 
 		//assign the arrayList to the adapter.
-		ArrayAdapter<destination_model> aa = new ArrayAdapter<destination_model>(
+		ArrayAdapter<Destination_model> aa = new ArrayAdapter<Destination_model>(
 				this,
 				android.R.layout.simple_list_item_1,
 				destinations);

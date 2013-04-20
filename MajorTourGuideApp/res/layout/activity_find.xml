@@ -4,11 +4,18 @@
     android:layout_height="match_parent"
     tools:context=".Find" >
 
+    <TextView
+        android:id="@+id/instruction"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose a destination from the dropdown list"
+        android:layout_alignParentTop="true"
+        />
     <Spinner
         android:id="@+id/spinner1"
         android:layout_width="fill_parent"
         android:layout_height="48dip"
-        android:layout_alignParentTop="true" 
+        android:layout_below="@instruction" 
         android:spinnerMode="dialog"
         android:prompt="@string/dest_prompt" />
       

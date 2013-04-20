@@ -5,14 +5,14 @@ import android.database.Cursor;
 
 import com.google.android.gms.maps.model.LatLng;
 
-public class destination_model {
+public class Destination_model {
 
 	private String destination_name;
 	private String destination_id;
 	private String blurb;
 	private LatLng entrance;
 	
-	public destination_model(String destination_name, String destination_id,
+	public Destination_model(String destination_name, String destination_id,
 			String blurb, Context ctx) {
 		super();
 		this.destination_name = destination_name;
