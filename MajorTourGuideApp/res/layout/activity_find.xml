@@ -8,8 +8,13 @@
         android:id="@+id/instruction"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Choose a destination from the dropdown list"
+        android:text="Choose a destination from the list"
         android:layout_alignParentTop="true"
+        android:gravity="center"
+	    android:textSize="18dp"
+	    android:textColor="@color/white"
+	    android:background="@color/bentleyBlue"
+	    android:padding="3dp"
         />
     <Spinner
         android:id="@+id/spinner1"
@@ -26,7 +31,7 @@
 	     android:text="When you reach your destination..."
 	     android:layout_alignParentBottom="true" 
 	     android:padding="6dip"
-	     android:background="@color/blue"
+	     android:background="@color/bentleyBlue"
 	     android:textColor="@color/white"/>
 	 
 	 <include
