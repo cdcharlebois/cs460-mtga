@@ -24,3 +24,26 @@
 ====== ======= ======
 ------ /Conner ------
 ====== ======= ======
+
+====== ====== ======
+------   Rob  ------
+====== ====== ======
+/* ----------
+	JAR PATHS
+	---------- */
+	support:
+		C:\Users\DEXTRAD_ROBE\AppData\Local\Android\android-sdk\extras\android\support\v4\android-support-v4.jar
+	google play services:
+		C:\Users\DEXTRAD_ROBE\AppData\Local\Android\android-sdk\extras\google\google_play_services\libproject\google-play-services_lib\libs\google-play-services.jar
+
+/* ----------
+	API KEYS
+	---------- */
+	dev:
+		//Still Have to Add
+	prod:
+		//Still Have to Add
+
+====== ======= ======
+------   /Rob  ------
+====== ======= ======
