@@ -113,7 +113,7 @@ public class CustomAdapterCourses extends BaseAdapter {
 		// cast to the correct type
 		TextView tv = (TextView)viewElement;
 		// set the value
-		tv.setText(item.getCourse_code() + item.getSeparator());
+		tv.setText(item.getCourse_code()+" > ");
 		
 
 		//course name

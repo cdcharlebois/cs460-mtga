@@ -4,7 +4,8 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="5dip" >
+    android:padding="5dip" 
+    android:gravity="center_vertical">
  
     <!-- Course Code -->
     <TextView
@@ -16,18 +17,19 @@
         android:text="Wilson Wong"
         android:textColor="#000000"
         android:typeface="sans"
-        android:textSize="20dip"
+        android:textSize="18dp"
+        android:padding="3dp"
         android:textStyle="bold"/>
  
     <!-- Course Description -->
+
     <TextView
         android:id="@+id/course_desc"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/course_code"
         android:textColor="#000000"
-        android:textSize="15dip"
-        android:layout_marginTop="1dip"
-        android:layout_toRightOf="@id/course_code"
-        android:text="" />
+        android:textSize="15dip" />
      
 </RelativeLayout>

@@ -4,11 +4,25 @@
     android:layout_height="match_parent"
     tools:context=".Courses" >
 
+    <TextView
+	    android:id="@+id/helperCourses"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:padding="3dp"
+	    android:text="Tap the elective item for more info"
+	    android:layout_alignParentTop="true" 
+	    android:gravity="center"
+	    android:textSize="18dp"
+	    android:textColor="@color/white"
+	    android:background="@color/bentleyBlue"
+	      />
+    
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent" 
         android:layout_height="fill_parent"
         android:drawSelectorOnTop="false"
+        android:layout_below="@id/helperCourses"
         />
 
 </RelativeLayout>
