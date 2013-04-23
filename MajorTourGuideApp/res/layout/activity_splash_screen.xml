@@ -4,13 +4,36 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     tools:context=".SplashScreen" >
-    
+    <!-- about us -->
+
+    <ImageView
+        android:id="@+id/Image"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/mtga_logo" />
+
+    <TextView
+        android:id="@+id/fullscreen_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Image"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:keepScreenOn="true"
+        android:text="The who, what and where for your major"
+        android:textColor="#a9a9a9"
+        android:textSize="18dp"
+        android:textStyle="italic" />
 
     <LinearLayout
         android:id="@+id/splashBtnWrapper"
         android:layout_width="fill_parent"
         android:layout_height="54dp"
-        android:layout_alignParentBottom="true" >
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="54dp" >
 
         <Button
             android:id="@+id/btnInfo"
@@ -18,8 +41,8 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@drawable/new_button"
-            android:textColor="@drawable/button_text"
-            android:text="Info" />
+            android:text="About"
+            android:textColor="@drawable/button_text" />
 
         <Button
             android:id="@+id/btnContinue"
@@ -30,27 +53,5 @@
             android:text="Continue"
             android:textColor="@drawable/button_text" />
     </LinearLayout>
-    <!-- about us -->
-
-    <ImageView
-        android:id="@+id/Image"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="48dp"
-        android:src="@drawable/mtga_logo" />
-
-    <TextView
-        android:id="@+id/fullscreen_content"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_above="@id/splashBtnWrapper"
-        android:layout_below="@id/Image"
-        android:gravity="center"
-        android:keepScreenOn="true"
-        android:text="Semper Paratus"
-        android:textStyle="bold|italic"
-        android:textColor="@color/bentleyBlue"
-        android:textSize="24dp" />
 
 </RelativeLayout>

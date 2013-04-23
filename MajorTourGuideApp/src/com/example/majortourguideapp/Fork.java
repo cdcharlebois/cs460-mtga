@@ -66,7 +66,7 @@ public class Fork extends Activity implements OnClickListener {
 		db.close();
 		
 		// display the text
-		lblMajor.setText("You've selected "+selected_major);
+		lblMajor.setText("You've selected "+selected_major+".\nPlease choose an action:");
 		
 		
 	}

@@ -13,11 +13,13 @@
 
         <TextView
             android:id="@+id/lblMajor"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:height="48dp"
-            android:text="@string/Major" />
+            android:text="@string/Major"
+            android:gravity="center" 
+            android:textAlignment="center"/>
 
         <Button
             android:id="@+id/btnFind"
@@ -26,7 +28,7 @@
             android:layout_margin="3dip"
             android:background="@drawable/new_button"
             android:height="48dp"
-            android:text="Where..."
+            android:text="Find location"
             android:textColor="@drawable/button_text"
             android:width="200dip" />
 
@@ -37,7 +39,7 @@
             android:layout_margin="3dip"
             android:background="@drawable/new_button"
             android:height="48dp"
-            android:text="Who..."
+            android:text="Lookup faculty"
             android:textColor="@drawable/button_text"
             android:width="200dip" />
 
@@ -48,7 +50,7 @@
             android:layout_margin="3dip"
             android:background="@drawable/new_button"
             android:height="48dp"
-            android:text="What..."
+            android:text="View requirements"
             android:textColor="@drawable/button_text"
             android:width="200dip" />
     </LinearLayout>

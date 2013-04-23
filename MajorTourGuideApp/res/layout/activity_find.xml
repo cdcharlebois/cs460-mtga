@@ -15,7 +15,7 @@
         android:id="@+id/spinner1"
         android:layout_width="fill_parent"
         android:layout_height="48dip"
-        android:layout_below="@instruction" 
+        android:layout_below="@id/instruction" 
         android:spinnerMode="dialog"
         android:prompt="@string/dest_prompt" />
       

@@ -20,7 +20,8 @@
         android:layout_marginBottom="12dp"
         android:gravity="center"
         android:height="60dp"
-        android:text="Please Choose A Major:" />
+        android:text="Please choose your major:" 
+        android:textAlignment="gravity"/>
 
     <LinearLayout
         android:id="@+id/llButtonWrapper1"
@@ -40,8 +41,8 @@
             android:height="80dp"
             android:text="CIS"
             android:textColor="@drawable/button_text"
-            android:textSize="40dp"
-            android:width="80dip" />
+            android:textSize="40dp" 
+            android:width="80dp"/>
 
         <Button
             android:id="@+id/btnAC"
